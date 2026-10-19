@@ -25,9 +25,9 @@ jobs:
           fetch-depth: 0
 
       - name: 安装 pnpm
+        # 版本由 package.json 的 packageManager 字段决定，此处不要再写 version，
+        # 否则 action 会因为「指定了多个版本」直接报错
         uses: pnpm/action-setup@v4
-        with:
-          version: 11
 
       - name: 安装 Node
         uses: actions/setup-node@v4
