@@ -185,13 +185,18 @@ body {
   opacity: 0.55;
 }
 
+/*
+ * 注意：VitePress 自己用 transform: translate(-50%, -50%) 让头像在容器里居中，
+ * 所以这里的 keyframes 必须把这段位移一起写进去，
+ * 否则动画会覆盖掉居中变换，头像会向右下各偏移半个身位、压住标题。
+ */
 @keyframes wl-bob {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translate(-50%, -50%);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translate(-50%, calc(-50% - 10px));
   }
 }
 
