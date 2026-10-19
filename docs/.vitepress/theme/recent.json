@@ -1,0 +1,128 @@
+{
+  "generatedAt": "2026-10-19T17:15:43.634Z",
+  "totalDocs": 33,
+  "totalChars": 102936,
+  "sections": [
+    {
+      "icon": "☕",
+      "text": "Java",
+      "desc": "设计模式、UML，后端基本功",
+      "count": 2,
+      "link": "/Java/设计模式"
+    },
+    {
+      "icon": "🐹",
+      "text": "Golang",
+      "desc": "Go 语法与工程实践",
+      "count": 1,
+      "link": "/Golang/start"
+    },
+    {
+      "icon": "🦀",
+      "text": "Rust",
+      "desc": "所有权、生命周期，边学边记",
+      "count": 1,
+      "link": "/Rust/start"
+    },
+    {
+      "icon": "🐍",
+      "text": "Python",
+      "desc": "脚本与小工具",
+      "count": 1,
+      "link": "/Python/python"
+    },
+    {
+      "icon": "🔧",
+      "text": "C / C++",
+      "desc": "编译环境与语言基础",
+      "count": 1,
+      "link": "/C/C"
+    },
+    {
+      "icon": "🗄️",
+      "text": "数据库",
+      "desc": "MySQL、PostgreSQL 安装与调优",
+      "count": 2,
+      "link": "/DataBase/mysql"
+    },
+    {
+      "icon": "🐧",
+      "text": "Linux 运维",
+      "desc": "部署、Nginx、Docker 运维实录",
+      "count": 9,
+      "link": "/Linux/java"
+    },
+    {
+      "icon": "🌿",
+      "text": "Git",
+      "desc": "常用语法与开源协议",
+      "count": 2,
+      "link": "/Git/常用语法"
+    },
+    {
+      "icon": "⛓️",
+      "text": "Hyperledger Fabric",
+      "desc": "联盟链与链码开发",
+      "count": 1,
+      "link": "/Fabric/start"
+    },
+    {
+      "icon": "🎨",
+      "text": "AI 绘画",
+      "desc": "Stable Diffusion / NovelAI 调参记录",
+      "count": 4,
+      "link": "/NovelAIDiffusion/近似NovelAI调整"
+    },
+    {
+      "icon": "📦",
+      "text": "杂项",
+      "desc": "Windows、Bitburner 等折腾记录",
+      "count": 7,
+      "link": "/Others/windows"
+    }
+  ],
+  "recent": [
+    {
+      "title": "Kubernetes",
+      "url": "/Others/k8s",
+      "date": "2026-10-19",
+      "section": "杂项",
+      "icon": "📦"
+    },
+    {
+      "title": "关于本站",
+      "url": "/about",
+      "date": "2026-10-19",
+      "section": "其他",
+      "icon": "📄"
+    },
+    {
+      "title": "index",
+      "url": "/index",
+      "date": "2026-10-19",
+      "section": "其他",
+      "icon": "📄"
+    },
+    {
+      "title": "安装编译环境",
+      "url": "/C/C",
+      "date": "2026-10-19",
+      "section": "C / C++",
+      "icon": "🔧"
+    },
+    {
+      "title": "MySQL（Windows 安装）",
+      "url": "/DataBase/mysql",
+      "date": "2026-10-19",
+      "section": "数据库",
+      "icon": "🗄️"
+    },
+    {
+      "title": "PostgreSQL",
+      "url": "/DataBase/postgresql",
+      "date": "2026-10-19",
+      "section": "数据库",
+      "icon": "🗄️"
+    }
+  ]
+}

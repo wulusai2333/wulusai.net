@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wulusai.net/sitemap.xml

@@ -1,0 +1,148 @@
+{
+  "sections": [
+    {
+      "dir": "Java",
+      "icon": "☕",
+      "text": "Java",
+      "desc": "设计模式、UML，后端基本功",
+      "collapsed": false,
+      "order": ["Java/设计模式.md", "Java/UML.md"]
+    },
+    {
+      "dir": "Golang",
+      "icon": "🐹",
+      "text": "Golang",
+      "desc": "Go 语法与工程实践",
+      "collapsed": false,
+      "order": ["Golang/start.md"]
+    },
+    {
+      "dir": "Rust",
+      "icon": "🦀",
+      "text": "Rust",
+      "desc": "所有权、生命周期，边学边记",
+      "collapsed": false,
+      "order": ["Rust/start.md"]
+    },
+    {
+      "dir": "Python",
+      "icon": "🐍",
+      "text": "Python",
+      "desc": "脚本与小工具",
+      "collapsed": true,
+      "order": ["Python/python.md"]
+    },
+    {
+      "dir": "C",
+      "icon": "🔧",
+      "text": "C / C++",
+      "desc": "编译环境与语言基础",
+      "collapsed": true,
+      "order": ["C/C.md"]
+    },
+    {
+      "dir": "DataBase",
+      "icon": "🗄️",
+      "text": "数据库",
+      "desc": "MySQL、PostgreSQL 安装与调优",
+      "collapsed": false,
+      "order": ["DataBase/mysql.md", "DataBase/postgresql.md"]
+    },
+    {
+      "dir": "Linux",
+      "icon": "🐧",
+      "text": "Linux 运维",
+      "desc": "部署、Nginx、Docker 运维实录",
+      "collapsed": false,
+      "order": [
+        "Linux/java.md",
+        "Linux/nginx.md",
+        "Linux/docker.md",
+        "Linux/openssh.md",
+        "Linux/虚拟机安装.md",
+        "Linux/日志查询.md",
+        "Linux/运维.md",
+        "Linux/pkgs.org.md",
+        "Linux/计算机网络.md"
+      ]
+    },
+    {
+      "dir": "Git",
+      "icon": "🌿",
+      "text": "Git",
+      "desc": "常用语法与开源协议",
+      "collapsed": false,
+      "order": ["Git/常用语法.md", "Git/常见的开源协议.md"]
+    },
+    {
+      "dir": "Fabric",
+      "icon": "⛓️",
+      "text": "Hyperledger Fabric",
+      "desc": "联盟链与链码开发",
+      "collapsed": true,
+      "order": ["Fabric/start.md"]
+    },
+    {
+      "dir": "NovelAIDiffusion",
+      "icon": "🎨",
+      "text": "AI 绘画",
+      "desc": "Stable Diffusion / NovelAI 调参记录",
+      "collapsed": false,
+      "order": [
+        "NovelAIDiffusion/近似NovelAI调整.md",
+        "NovelAIDiffusion/训练自定义角色模型.md",
+        "NovelAIDiffusion/tag的应用方法.md",
+        "NovelAIDiffusion/修复有瑕疵的输出.md"
+      ]
+    },
+    {
+      "dir": "Others",
+      "icon": "📦",
+      "text": "杂项",
+      "desc": "Windows、Bitburner 等折腾记录",
+      "collapsed": true,
+      "order": [
+        "Others/windows.md",
+        "Others/bitburner.md",
+        "Others/breakzip.md",
+        "Others/LibList.md",
+        "Others/dnf.md",
+        "Others/华为移动应用引擎安装第三方APP.md",
+        "Others/k8s.md"
+      ]
+    }
+  ],
+  "titles": {
+    "C/C.md": "安装编译环境",
+    "DataBase/mysql.md": "MySQL（Windows 安装）",
+    "DataBase/postgresql.md": "PostgreSQL",
+    "Fabric/start.md": "Fabric 起步",
+    "Git/常用语法.md": "常用 Git 语法",
+    "Git/常见的开源协议.md": "常见的开源协议",
+    "Golang/start.md": "Go 起步",
+    "Java/UML.md": "UML 类图",
+    "Java/设计模式.md": "设计模式",
+    "Linux/docker.md": "Docker",
+    "Linux/java.md": "Java 服务部署",
+    "Linux/nginx.md": "Nginx 部署",
+    "Linux/openssh.md": "OpenSSH 与 PAM",
+    "Linux/pkgs.org.md": "安装包查询",
+    "Linux/日志查询.md": "日志查询",
+    "Linux/虚拟机安装.md": "虚拟机安装 CentOS 7",
+    "Linux/计算机网络.md": "计算机网络",
+    "Linux/运维.md": "运维速查",
+    "NovelAIDiffusion/tag的应用方法.md": "Tag 的应用方法",
+    "NovelAIDiffusion/修复有瑕疵的输出.md": "修复有瑕疵的输出",
+    "NovelAIDiffusion/训练自定义角色模型.md": "训练自定义角色模型",
+    "NovelAIDiffusion/近似NovelAI调整.md": "近似 NovelAI 调整",
+    "Others/LibList.md": "常用资料清单",
+    "Others/bitburner.md": "Bitburner 脚本",
+    "Others/breakzip.md": "压缩包解密",
+    "Others/dnf.md": "DNF 折腾记录",
+    "Others/k8s.md": "Kubernetes",
+    "Others/windows.md": "Windows 小技巧",
+    "Others/华为移动应用引擎安装第三方APP.md": "华为移动应用引擎装第三方 APP",
+    "Python/python.md": "Python 笔记",
+    "Rust/start.md": "Rust 起步"
+  }
+}
