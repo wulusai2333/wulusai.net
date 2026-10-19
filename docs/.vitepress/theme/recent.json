@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-19T17:15:43.634Z",
-  "totalDocs": 33,
-  "totalChars": 102936,
+  "generatedAt": "2026-10-19T17:47:45.371Z",
+  "totalDocs": 31,
+  "totalChars": 101292,
   "sections": [
     {
       "icon": "☕",
@@ -83,44 +83,44 @@
   ],
   "recent": [
     {
-      "title": "Kubernetes",
-      "url": "/Others/k8s",
-      "date": "2026-10-19",
-      "section": "杂项",
-      "icon": "📦"
+      "title": "修复有瑕疵的输出",
+      "url": "/NovelAIDiffusion/修复有瑕疵的输出",
+      "date": "2022-10-18",
+      "section": "AI 绘画",
+      "icon": "🎨"
     },
     {
-      "title": "关于本站",
-      "url": "/about",
-      "date": "2026-10-19",
-      "section": "其他",
-      "icon": "📄"
+      "title": "Tag 的应用方法",
+      "url": "/NovelAIDiffusion/tag的应用方法",
+      "date": "2022-10-14",
+      "section": "AI 绘画",
+      "icon": "🎨"
     },
     {
-      "title": "index",
-      "url": "/index",
-      "date": "2026-10-19",
-      "section": "其他",
-      "icon": "📄"
+      "title": "训练自定义角色模型",
+      "url": "/NovelAIDiffusion/训练自定义角色模型",
+      "date": "2022-10-14",
+      "section": "AI 绘画",
+      "icon": "🎨"
+    },
+    {
+      "title": "近似 NovelAI 调整",
+      "url": "/NovelAIDiffusion/近似NovelAI调整",
+      "date": "2022-10-14",
+      "section": "AI 绘画",
+      "icon": "🎨"
     },
     {
       "title": "安装编译环境",
       "url": "/C/C",
-      "date": "2026-10-19",
+      "date": "2022-10-11",
       "section": "C / C++",
       "icon": "🔧"
     },
     {
-      "title": "MySQL（Windows 安装）",
-      "url": "/DataBase/mysql",
-      "date": "2026-10-19",
-      "section": "数据库",
-      "icon": "🗄️"
-    },
-    {
       "title": "PostgreSQL",
       "url": "/DataBase/postgresql",
-      "date": "2026-10-19",
+      "date": "2022-10-11",
       "section": "数据库",
       "icon": "🗄️"
     }

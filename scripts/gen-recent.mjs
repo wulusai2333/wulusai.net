@@ -80,7 +80,19 @@ function gitDates() {
   try {
     const out = execFileSync(
       'git',
-      ['-C', REPO_ROOT, 'log', '--pretty=format:__C__%cI', '--name-only', '--no-renames', '--', 'docs'],
+      [
+        '-C',
+        REPO_ROOT,
+        // 关键：默认 core.quotePath=true 会把中文路径转义成 \xxx 形式导致匹配不上
+        '-c',
+        'core.quotePath=false',
+        'log',
+        '--pretty=format:__C__%cI',
+        '--name-only',
+        '--no-renames',
+        '--',
+        'docs'
+      ],
       { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] }
     )
     let current = null

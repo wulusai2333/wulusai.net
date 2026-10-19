@@ -303,7 +303,8 @@ body {
 
 .wl-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  /* min() 保证在比卡片还窄的屏幕上不会撑出横向滚动 */
+  grid-template-columns: repeat(auto-fill, minmax(min(268px, 100%), 1fr));
   gap: 16px;
 }
 
@@ -433,6 +434,8 @@ body {
   align-items: center;
   gap: 12px;
   padding: 14px 18px;
+  /* 关键：flex 项默认 min-width:auto，长标题会把整页撑出横向滚动 */
+  min-width: 0;
   text-decoration: none !important;
   transition: background 0.2s ease, padding-left 0.2s ease;
 }
@@ -450,6 +453,7 @@ body {
 .wl-recent__title {
   color: var(--vp-c-text-1);
   font-weight: 550;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -655,6 +659,12 @@ body {
   color: var(--vp-c-text-3);
   font-size: 0.85rem;
   padding: 26px 0;
+}
+
+.wl-mermaid__error {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
 }
 
 .wl-mermaid__fallback {

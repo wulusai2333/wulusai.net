@@ -71,10 +71,14 @@ const enSearchTranslations = {
   }
 }
 
-const localSearch = (translations: typeof zhSearchTranslations) => ({
+const localSearch = {
   provider: 'local' as const,
   options: {
-    locales: { root: { translations } },
+    // 多语言站点：搜索 UI 文案按 locale 区分，配置本身放在顶层 themeConfig
+    locales: {
+      root: { translations: zhSearchTranslations },
+      en: { translations: enSearchTranslations }
+    },
     miniSearch: {
       options: { tokenize: cjkTokenize },
       searchOptions: {
@@ -84,7 +88,7 @@ const localSearch = (translations: typeof zhSearchTranslations) => ({
       }
     }
   }
-})
+}
 
 const zhTheme = {
   siteTitle: SITE_NAME,
@@ -120,8 +124,7 @@ const zhTheme = {
   footer: {
     message: '内容为个人学习笔记，转载请注明出处并保留原文链接。',
     copyright: 'Copyright © 2020-present 呜路塞'
-  },
-  search: localSearch(zhSearchTranslations)
+  }
 }
 
 const enTheme = {
@@ -150,8 +153,7 @@ const enTheme = {
   footer: {
     message: 'Personal study notes. Please credit the source when reposting.',
     copyright: 'Copyright © 2020-present wulusai'
-  },
-  search: localSearch(enSearchTranslations)
+  }
 }
 
 export default defineConfig({
@@ -220,6 +222,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    socialLinks: [{ icon: 'github', link: 'https://github.com/wulusai2333' }]
+    socialLinks: [{ icon: 'github', link: 'https://github.com/wulusai2333' }],
+    search: localSearch
   }
 })
