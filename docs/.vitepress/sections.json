@@ -70,9 +70,14 @@
       "dir": "Git",
       "icon": "🌿",
       "text": "Git",
-      "desc": "常用语法与开源协议",
+      "desc": "急救 · 分支合并 · 语法速查",
       "collapsed": false,
-      "order": ["Git/常用语法.md", "Git/常见的开源协议.md"]
+      "order": [
+        "Git/撤销与找回.md",
+        "Git/分支与合并.md",
+        "Git/常用语法.md",
+        "Git/常见的开源协议.md"
+      ]
     },
     {
       "dir": "Fabric",
@@ -117,7 +122,9 @@
     "DataBase/mysql.md": "MySQL（Windows 安装）",
     "DataBase/postgresql.md": "PostgreSQL",
     "Fabric/start.md": "Fabric 起步",
-    "Git/常用语法.md": "常用 Git 语法",
+    "Git/常用语法.md": "常用语法与配置",
+    "Git/撤销与找回.md": "撤销与找回",
+    "Git/分支与合并.md": "分支、合并与冲突",
     "Git/常见的开源协议.md": "常见的开源协议",
     "Golang/start.md": "Go 起步",
     "Java/UML.md": "UML 类图",

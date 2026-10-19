@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-19T19:15:06.559Z",
-  "totalDocs": 31,
-  "totalChars": 101292,
+  "generatedAt": "2026-10-19T20:12:49.083Z",
+  "totalDocs": 33,
+  "totalChars": 113939,
   "sections": [
     {
       "icon": "☕",
@@ -55,9 +55,9 @@
     {
       "icon": "🌿",
       "text": "Git",
-      "desc": "常用语法与开源协议",
-      "count": 2,
-      "link": "/Git/常用语法"
+      "desc": "急救 · 分支合并 · 语法速查",
+      "count": 4,
+      "link": "/Git/撤销与找回"
     },
     {
       "icon": "⛓️",
@@ -82,6 +82,20 @@
     }
   ],
   "recent": [
+    {
+      "title": "分支、合并与冲突",
+      "url": "/Git/分支与合并",
+      "date": "2026-10-19",
+      "section": "Git",
+      "icon": "🌿"
+    },
+    {
+      "title": "撤销与找回",
+      "url": "/Git/撤销与找回",
+      "date": "2026-10-19",
+      "section": "Git",
+      "icon": "🌿"
+    },
     {
       "title": "修复有瑕疵的输出",
       "url": "/NovelAIDiffusion/修复有瑕疵的输出",
@@ -109,20 +123,6 @@
       "date": "2022-10-14",
       "section": "AI 绘画",
       "icon": "🎨"
-    },
-    {
-      "title": "安装编译环境",
-      "url": "/C/C",
-      "date": "2022-10-11",
-      "section": "C / C++",
-      "icon": "🔧"
-    },
-    {
-      "title": "PostgreSQL",
-      "url": "/DataBase/postgresql",
-      "date": "2022-10-11",
-      "section": "数据库",
-      "icon": "🗄️"
     }
   ]
 }
