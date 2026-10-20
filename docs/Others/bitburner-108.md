@@ -11,7 +11,8 @@ title: Bitburner 108 全成就速通（any%）
 **最短路径**（6 条命令，全程约 5 分钟）：
 
 ```bash
-git clone https://github.com/wulusai2333/wulusai.net.git && cd wulusai.net/docs/public/bitburner108
+git clone https://github.com/wulusai2333/wulusai.net.git
+cd wulusai.net/docs/public/bitburner108
 
 node save-bridge.mjs get --port 9222 --out live-before.gz          # 1 备份
 node grant-all.mjs --in live-before.gz --out full.gz --sf-all 3    # 2 改档
@@ -69,18 +70,14 @@ curl.exe -s http://127.0.0.1:9222/json/version
 
 ## 原理：三层，各自独立可验证
 
-```text
-① 改存档        → 游戏内成就变成 108
-   往 IndexedDB 里的 gzip 存档的 PlayerSave.achievements 数组写满 108 个条目
-
-② 调 Steam IPC  → Steam 侧成就变成 98
-   页面里执行 window.electronBridge.send("activate-achievements", {achievements:[...]})
-
-③ 验收          → 用"复推新增 0 行"证明，而不是"看起来亮了"
-   看 %APPDATA%\bitburner\logs\main.log 里 "Granting Steam achievement" 的行数
+```mermaid
+flowchart TB
+  A["① 改存档<br/>PlayerSave.achievements 写满 108 条"] --> A2["游戏内成就 → 108"]
+  B["② 调 Steam IPC<br/>页面求值 electronBridge.send"] --> B2["Steam 侧成就 → 98"]
+  C["③ 验收<br/>主进程日志里「Granting」行数"] --> C2["复推新增 0 行 → 全亮"]
 ```
 
-三层的证据互相独立：① 看存档字段，② 看主进程日志，③ 看游戏内面板。任何一层失败都能单独定位。
+三层的证据互相独立：① 看存档字段，② 看主进程日志，③ 看游戏内面板。任何一层失败都能单独定位。具体命令见「第 1 步」到「第 5 步」。
 
 ::: tip 面板亮 ≠ Steam 亮
 游戏内成就面板显示 108，**只**证明第 ① 层成功。它能被存档注入直接刷出来，和 Steam 侧没有任何因果关系。验收判据见「第 5 步」。
@@ -302,9 +299,10 @@ for (const achievement of data.achievements) {
 
 ```powershell
 $log = "$env:APPDATA\bitburner\logs\main.log"
-$before = (Select-String -Path $log -Pattern "Granting Steam achievement").Count
+$pat = "Granting Steam achievement"
+$before = (Select-String -Path $log -Pattern $pat).Count
 node cdp-eval.mjs --expr-file steam.expr.js | Out-Null
-$after = (Select-String -Path $log -Pattern "Granting Steam achievement").Count
+$after = (Select-String -Path $log -Pattern $pat).Count
 "before=$before after=$after new=$($after - $before)"
 ```
 
@@ -348,7 +346,8 @@ const fs=require('fs');
 const t=fs.readFileSync('<源码目录>/src/Achievements/Achievements.ts','utf8');
 const re=/^ {2}([A-Z][A-Za-z0-9_.]*):\s*\{/gm; const st=[]; let m;
 while((m=re.exec(t))) st.push({id:m[1],at:m.index});
-const hits=st.filter((s,i)=>/NotInSteam:\s*true/.test(t.slice(s.at, st[i+1]?.at ?? t.length)));
+const hits=st.filter((s,i)=>
+  /NotInSteam:\s*true/.test(t.slice(s.at, st[i+1]?.at ?? t.length)));
 console.log('显式 NotInSteam:', hits.length, hits.map(h=>h.id).join(' '));
 console.log('规则:', t.match(/NotInSteam:\s*bn\s*>=\s*(\d+)/)?.[0]);
 "
