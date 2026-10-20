@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-19T20:12:49.083Z",
-  "totalDocs": 33,
-  "totalChars": 113939,
+  "generatedAt": "2026-10-20T01:54:48.683Z",
+  "totalDocs": 36,
+  "totalChars": 134547,
   "sections": [
     {
       "icon": "☕",
@@ -60,6 +60,13 @@
       "link": "/Git/撤销与找回"
     },
     {
+      "icon": "🔓",
+      "text": "安全实验",
+      "desc": "口令强度、压缩包恢复与字典取舍",
+      "count": 3,
+      "link": "/Security/压缩包破解优先级"
+    },
+    {
       "icon": "⛓️",
       "text": "Hyperledger Fabric",
       "desc": "联盟链与链码开发",
@@ -83,8 +90,36 @@
   ],
   "recent": [
     {
+      "title": "hashcat 实战复盘",
+      "url": "/Security/hashcat实战复盘",
+      "date": "2026-10-20",
+      "section": "安全实验",
+      "icon": "🔓"
+    },
+    {
+      "title": "密码字典从哪来",
+      "url": "/Security/密码字典从哪来",
+      "date": "2026-10-20",
+      "section": "安全实验",
+      "icon": "🔓"
+    },
+    {
+      "title": "压缩包口令破解的优先级",
+      "url": "/Security/压缩包破解优先级",
+      "date": "2026-10-20",
+      "section": "安全实验",
+      "icon": "🔓"
+    },
+    {
       "title": "分支、合并与冲突",
       "url": "/Git/分支与合并",
+      "date": "2026-10-19",
+      "section": "Git",
+      "icon": "🌿"
+    },
+    {
+      "title": "常用语法与配置",
+      "url": "/Git/常用语法",
       "date": "2026-10-19",
       "section": "Git",
       "icon": "🌿"
@@ -95,34 +130,6 @@
       "date": "2026-10-19",
       "section": "Git",
       "icon": "🌿"
-    },
-    {
-      "title": "修复有瑕疵的输出",
-      "url": "/NovelAIDiffusion/修复有瑕疵的输出",
-      "date": "2022-10-18",
-      "section": "AI 绘画",
-      "icon": "🎨"
-    },
-    {
-      "title": "Tag 的应用方法",
-      "url": "/NovelAIDiffusion/tag的应用方法",
-      "date": "2022-10-14",
-      "section": "AI 绘画",
-      "icon": "🎨"
-    },
-    {
-      "title": "训练自定义角色模型",
-      "url": "/NovelAIDiffusion/训练自定义角色模型",
-      "date": "2022-10-14",
-      "section": "AI 绘画",
-      "icon": "🎨"
-    },
-    {
-      "title": "近似 NovelAI 调整",
-      "url": "/NovelAIDiffusion/近似NovelAI调整",
-      "date": "2022-10-14",
-      "section": "AI 绘画",
-      "icon": "🎨"
     }
   ]
 }

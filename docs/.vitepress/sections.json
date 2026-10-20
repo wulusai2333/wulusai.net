@@ -80,6 +80,18 @@
       ]
     },
     {
+      "dir": "Security",
+      "icon": "🔓",
+      "text": "安全实验",
+      "desc": "口令强度、压缩包恢复与字典取舍",
+      "collapsed": false,
+      "order": [
+        "Security/压缩包破解优先级.md",
+        "Security/密码字典从哪来.md",
+        "Security/hashcat实战复盘.md"
+      ]
+    },
+    {
       "dir": "Fabric",
       "icon": "⛓️",
       "text": "Hyperledger Fabric",
@@ -150,6 +162,9 @@
     "Others/windows.md": "Windows 小技巧",
     "Others/华为移动应用引擎安装第三方APP.md": "华为移动应用引擎装第三方 APP",
     "Python/python.md": "Python 笔记",
-    "Rust/start.md": "Rust 起步"
+    "Rust/start.md": "Rust 起步",
+    "Security/压缩包破解优先级.md": "压缩包口令破解的优先级",
+    "Security/密码字典从哪来.md": "密码字典从哪来",
+    "Security/hashcat实战复盘.md": "hashcat 实战复盘"
   }
 }
