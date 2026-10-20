@@ -132,7 +132,20 @@ This hash-mode is known to emit multiple valid candidates for the same hash.
 | `--hex-wordlist` + UTF-8 / UTF-16LE / GBK | ✗ |
 | `--encoding-from utf-8 --encoding-to utf-16le` | ✗（候选人确实被转成了真 UTF-16LE 字节，仍然不中） |
 
-John 1.9.0-jumbo-1 的 7z 格式在本机同样无法命中（连 ASCII 口令的自建包都 0 cracked），不能作为替代方案。
+::: tip 更正：John the Ripper 的 CPU 7z 格式**能**破中文口令
+原记录写的是「John 1.9.0-jumbo-1 的 7z 格式同样无法命中，不能作为替代方案」——**这条不准确**。
+
+复测发现失败原因是走错了后端：`--format=7z-opencl` 在本机报 `No OpenCL devices found`。改用 **CPU 的 `--format=7z`** 后，同一份 hash + 同一份字典**秒破**：
+
+```text
+$ john.exe --format=7z --wordlist=wl.txt b.hash
+Loaded 1 password hash (7z, 7-Zip [SHA256 256/256 AVX2 8x AES])
+中文口令测试           (b.7z)
+1g 0:00:00:00 DONE
+```
+
+所以「破不了 CJK 的 7z」**只对 hashcat 成立**，换个工具就行，不必自己写 CPU 遍历脚本。
+:::
 
 #### 为什么不行：不是 `-O`，是模块自己的朴素转换
 
@@ -172,11 +185,35 @@ hashcat 的 `docs/limits.txt` 写着：
 判断某个模式到底支不支持 UTF-16，**得看模块源码，不能只看 `limits.txt`**。这条正好是个反例。
 :::
 
+#### 独立验证：7z 要的确实是真 UTF-16LE
+
+为了不依赖 hashcat 的自述，用 Python 独立复刻 7z 的 KDF（`SHA256` 重复 2¹⁹ 次喂 `password_utf16le + le64(i)`），再用 `openssl AES-256-CBC` 解密，比对 hash 字段里的 CRC：
+
+| 口令编码方式 | 算出的 CRC | 与 hash 内的 CRC |
+| --- | ---: | --- |
+| **真 UTF-16LE** | `2310846974` | ✅ **MATCH**（解出正常 7z 头 `01040600…`） |
+| 原始 UTF-8 | `2416806890` | ✗ |
+| 朴素零扩展（UTF-8） | `2139095270` | ✗ |
+| 朴素零扩展（UTF-16LE） | `84490499` | ✗ |
+
+这就把结论从「现象」钉成了「机制」：**7z 真正要的是真 UTF-16LE，而 hashcat 内核的两种朴素扩展都不是它。**
+
+#### 提取 hash 时的两个坑
+
+| 现象 | 原因 / 处置 |
+| --- | --- |
+| `Can't locate Compress/Raw/Lzma.pm in @INC … at 7z2john.pl line 6` | `7z2john.pl` 需要 Perl 的 `Compress::Raw::Lzma`；装模块，或用 `perl -I <桩模块目录>` 绕过（`data type=0` 的归档其实不会走 LZMA 分支） |
+| `Token length exception … No hashes loaded` | `7z2john` 输出带 `文件名:` 前缀，hashcat 不认；先 `sed 's/^[^:]*://'` 去掉 |
+
+另外本机每次运行都会打印 `Device #1: CUDA SDK Toolkit not installed … Falling back to OpenCL runtime`，属正常回退，不影响结果。
+
 #### 那 CJK 口令的 7z 怎么办
 
-只能走 CPU 端验证：`7z.exe t -p<candidate>`，或 `py7zr` 遍历候选表。适合几千到几万条的**定向**表，不适合上亿条。
+**首选 John the Ripper 的 CPU `--format=7z`**（见上，实测秒破）。
 
-这反过来又强调了 [优先级设计](./压缩包破解优先级.md) 里的那条：慢格式上要先把预算压到「P 最高的那一小撮候选」，因为兜底的暴力路径可能压根不存在。
+没有现成工具时的兜底：`7z.exe t -p<candidate>`，或 `py7zr` 遍历候选表 —— 但这是纯 CPU、每条候选都要走完 2¹⁹ 轮 KDF，只适合几千到几万条的**定向**表，不适合上亿条。
+
+这反过来又强调了 [优先级设计](./压缩包破解优先级.md) 里的那条：慢格式上要先把预算压到「P 最高的那一小撮候选」。
 
 ## 改进方案
 

@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-20T01:54:48.683Z",
+  "generatedAt": "2026-10-20T01:57:28.967Z",
   "totalDocs": 36,
-  "totalChars": 134547,
+  "totalChars": 135680,
   "sections": [
     {
       "icon": "☕",
@@ -90,6 +90,13 @@
   ],
   "recent": [
     {
+      "title": "压缩包解密",
+      "url": "/Others/breakzip",
+      "date": "2026-10-20",
+      "section": "杂项",
+      "icon": "📦"
+    },
+    {
       "title": "hashcat 实战复盘",
       "url": "/Security/hashcat实战复盘",
       "date": "2026-10-20",
@@ -97,15 +104,15 @@
       "icon": "🔓"
     },
     {
-      "title": "密码字典从哪来",
-      "url": "/Security/密码字典从哪来",
+      "title": "压缩包口令破解的优先级",
+      "url": "/Security/压缩包破解优先级",
       "date": "2026-10-20",
       "section": "安全实验",
       "icon": "🔓"
     },
     {
-      "title": "压缩包口令破解的优先级",
-      "url": "/Security/压缩包破解优先级",
+      "title": "密码字典从哪来",
+      "url": "/Security/密码字典从哪来",
       "date": "2026-10-20",
       "section": "安全实验",
       "icon": "🔓"
@@ -120,13 +127,6 @@
     {
       "title": "常用语法与配置",
       "url": "/Git/常用语法",
-      "date": "2026-10-19",
-      "section": "Git",
-      "icon": "🌿"
-    },
-    {
-      "title": "撤销与找回",
-      "url": "/Git/撤销与找回",
       "date": "2026-10-19",
       "section": "Git",
       "icon": "🌿"
