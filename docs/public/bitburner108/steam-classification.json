@@ -1,0 +1,35 @@
+{
+  "note": "不同步到 Steam 的成就。由 tools/classify-steam.mjs 生成。",
+  "sourceFile": "upstream-source:src/Achievements/Achievements.ts",
+  "explicitNotInSteam": [
+    "BN_DESTROYER",
+    "IPVGO_ANTICHEAT",
+    "IPVGO_WINNING_STREAK",
+    "DARKNET_BACKDOOR",
+    "DARKNET_DEPTHS",
+    "CHALLENGE_BN14",
+    "CHALLENGE_BN15"
+  ],
+  "derivedFromSfRule": {
+    "rule": "NotInSteam: bn >= 13",
+    "produces": [
+      "SF13.1",
+      "SF14.1",
+      "SF15.1"
+    ]
+  },
+  "notInSteam": [
+    "BN_DESTROYER",
+    "CHALLENGE_BN14",
+    "CHALLENGE_BN15",
+    "DARKNET_BACKDOOR",
+    "DARKNET_DEPTHS",
+    "IPVGO_ANTICHEAT",
+    "IPVGO_WINNING_STREAK",
+    "SF13.1",
+    "SF14.1",
+    "SF15.1"
+  ],
+  "steamCount": 98,
+  "gameTotalCount": 108
+}

@@ -1,0 +1,659 @@
+{
+  "$schema": "1",
+  "note": "成就注册表。由 tools/extract-registry.mjs 从游戏文件提取,不要手改。notInSteam 由 tools/classify-steam.mjs 算出后合入。",
+  "extractedFrom": "game-bundle:dist/main.bundle.js",
+  "extractedAt": "2026-10-20T07:05:19.677Z",
+  "count": 108,
+  "notInSteamCount": 10,
+  "steamCount": 98,
+  "achievements": [
+    {
+      "id": "30_HACKNET_NODE",
+      "name": "Big network",
+      "description": "Have 30 hacknet nodes.",
+      "notInSteam": false
+    },
+    {
+      "id": "4S",
+      "name": "4S",
+      "description": "Purchase the 4S market data.",
+      "notInSteam": false
+    },
+    {
+      "id": "ALL_HACKNET_SERVER",
+      "name": "Full network",
+      "description": "Buy all hacknet servers.",
+      "notInSteam": false
+    },
+    {
+      "id": "BITRUNNERS",
+      "name": "run4theh111z",
+      "description": "Join the BitRunners.",
+      "notInSteam": false
+    },
+    {
+      "id": "BLADEBURNER_DIVISION",
+      "name": "Bladeburners",
+      "description": "Join the Bladeburner division.",
+      "notInSteam": false
+    },
+    {
+      "id": "BLADEBURNER_OVERCLOCK",
+      "name": "Overclock!",
+      "description": "Reach maximum level of Overclock",
+      "notInSteam": false
+    },
+    {
+      "id": "BLADEBURNER_UNSPENT_100000",
+      "name": "You should really spend those.",
+      "description": "Have 100 000 unspent bladeburner skill points.",
+      "notInSteam": false
+    },
+    {
+      "id": "BN_DESTROYER",
+      "name": "More BitNodes, please!",
+      "description": "Reach SF x.3 in each BitNode.",
+      "notInSteam": true
+    },
+    {
+      "id": "BRUTESSH.EXE",
+      "name": "BruteSSH.exe",
+      "description": "Acquire BruteSSH.exe",
+      "notInSteam": false
+    },
+    {
+      "id": "BYPASS",
+      "name": "Exploit: bypass",
+      "description": "Circumventing the ram cost of document.",
+      "notInSteam": false
+    },
+    {
+      "id": "CHALLENGE_BN1",
+      "name": "BN1: Challenge",
+      "description": "Destroy BN1 with at most 128GB and 1 core.",
+      "notInSteam": false
+    },
+    {
+      "id": "CHALLENGE_BN10",
+      "name": "BN10: Challenge",
+      "description": "Destroy BN10 without using sleeves.",
+      "notInSteam": false
+    },
+    {
+      "id": "CHALLENGE_BN12",
+      "name": "BN12: Challenge",
+      "description": "Destroy BN12 50 times.",
+      "notInSteam": false
+    },
+    {
+      "id": "CHALLENGE_BN13",
+      "name": "BN13: Challenge",
+      "description": "Complete BN13 without Stanek's Gift.",
+      "notInSteam": false
+    },
+    {
+      "id": "CHALLENGE_BN14",
+      "name": "BN14: Challenge",
+      "description": "Destroy BN14 without making a move or cheating via IPvGO APIs.",
+      "notInSteam": true
+    },
+    {
+      "id": "CHALLENGE_BN15",
+      "name": "BN15: Challenge",
+      "description": "Complete BN15 without ever calling dnet.heartbleed.",
+      "notInSteam": true
+    },
+    {
+      "id": "CHALLENGE_BN2",
+      "name": "BN2: Challenge",
+      "description": "Destroy BN2 without forming a gang.",
+      "notInSteam": false
+    },
+    {
+      "id": "CHALLENGE_BN3",
+      "name": "BN3: Challenge",
+      "description": "Destroy BN3 without creating corporation.",
+      "notInSteam": false
+    },
+    {
+      "id": "CHALLENGE_BN6",
+      "name": "BN6: Challenge",
+      "description": "Destroy BN6 without joining the bladeburner division.",
+      "notInSteam": false
+    },
+    {
+      "id": "CHALLENGE_BN7",
+      "name": "BN7: Challenge",
+      "description": "Destroy BN7 without joining the bladeburner division.",
+      "notInSteam": false
+    },
+    {
+      "id": "CHALLENGE_BN8",
+      "name": "BN8: Challenge",
+      "description": "Destroy BN8 without purchasing the 4s market data.",
+      "notInSteam": false
+    },
+    {
+      "id": "CHALLENGE_BN9",
+      "name": "BN9: Challenge",
+      "description": "Destroy BN9 without using hacknet servers or hacknet nodes.",
+      "notInSteam": false
+    },
+    {
+      "id": "COMBAT_3000",
+      "name": "One punch man",
+      "description": "Achieve 3000 in all combat stats.",
+      "notInSteam": false
+    },
+    {
+      "id": "CORPORATION",
+      "name": "A small 150b loan.",
+      "description": "Create a corporation.",
+      "notInSteam": false
+    },
+    {
+      "id": "CORPORATION_BRIBE",
+      "name": "Lobbying is great!",
+      "description": "Lower your tribute through lobbying.",
+      "notInSteam": false
+    },
+    {
+      "id": "CORPORATION_EMPLOYEE_3000",
+      "name": "Small town",
+      "description": "Have a division with 3000 employee.",
+      "notInSteam": false
+    },
+    {
+      "id": "CORPORATION_PROD_1000",
+      "name": "Streamlined manufacturing",
+      "description": "Have a division with a production multiplier of 1000.",
+      "notInSteam": false
+    },
+    {
+      "id": "CORPORATION_REAL_ESTATE",
+      "name": "Own the land",
+      "description": "Expand to the Real Estate division.",
+      "notInSteam": false
+    },
+    {
+      "id": "CYBERSEC",
+      "name": "CyberSec",
+      "description": "Join CyberSec.",
+      "notInSteam": false
+    },
+    {
+      "id": "DAEDALUS",
+      "name": "fl1ght.exe",
+      "description": "Join Daedalus.",
+      "notInSteam": false
+    },
+    {
+      "id": "DARKNET_BACKDOOR",
+      "name": "Make your Own Network",
+      "description": "Install a backdoor on 50 or more darknet servers at once.",
+      "notInSteam": true
+    },
+    {
+      "id": "DARKNET_DEPTHS",
+      "name": "Into the Depths",
+      "description": "Install the augment from the deepest server.",
+      "notInSteam": true
+    },
+    {
+      "id": "DEVMENU",
+      "name": "Exploit: you're not meant to access this",
+      "description": "Open the dev menu.",
+      "notInSteam": false
+    },
+    {
+      "id": "DISCOUNT",
+      "name": "Discount!",
+      "description": "Get a discount at Powerhouse Gym by backdooring their server.",
+      "notInSteam": false
+    },
+    {
+      "id": "DONATION",
+      "name": "Donate!",
+      "description": "Unlock donations with a faction.",
+      "notInSteam": false
+    },
+    {
+      "id": "DRAIN_SERVER",
+      "name": "Big trouble",
+      "description": "Drain a server of all its money.",
+      "notInSteam": false
+    },
+    {
+      "id": "EDITSAVEFILE",
+      "name": "Exploit: edit",
+      "description": "Acquire the EditSaveFile Source-File -1",
+      "notInSteam": false
+    },
+    {
+      "id": "FAST_BN",
+      "name": "Speed demon.",
+      "description": "Destroy a bitnode in under 2 days.",
+      "notInSteam": false
+    },
+    {
+      "id": "FIRST_HACKNET_NODE",
+      "name": "Free money!",
+      "description": "Purchase your first hacknet node.",
+      "notInSteam": false
+    },
+    {
+      "id": "FIRST_HACKNET_SERVER",
+      "name": "The improved hacker.",
+      "description": "Purchase your first hacknet server.",
+      "notInSteam": false
+    },
+    {
+      "id": "FORMULAS.EXE",
+      "name": "Formulas.exe",
+      "description": "Acquire Formulas.exe",
+      "notInSteam": false
+    },
+    {
+      "id": "FROZE",
+      "name": "while(true);",
+      "description": "Restart the game using the reload & kill all option because you froze it with an infinite loop.",
+      "notInSteam": false
+    },
+    {
+      "id": "FTPCRACK.EXE",
+      "name": "FTPCrack.exe",
+      "description": "Acquire FTPCrack.exe",
+      "notInSteam": false
+    },
+    {
+      "id": "FULL_GANG",
+      "name": "Don",
+      "description": "Recruit all gang members.",
+      "notInSteam": false
+    },
+    {
+      "id": "GANG",
+      "name": "Gangster",
+      "description": "Form a gang.",
+      "notInSteam": false
+    },
+    {
+      "id": "GANG_MEMBER_POWER",
+      "name": "One punch guy",
+      "description": "Have a gang member with 10 000 in 1 skill.",
+      "notInSteam": false
+    },
+    {
+      "id": "GANG_TERRITORY",
+      "name": "Stay out of my territory",
+      "description": "Have 100% of the territory.",
+      "notInSteam": false
+    },
+    {
+      "id": "HACKING_100000",
+      "name": "Power Overwhelming",
+      "description": "Achieve 100 000 hacking skill.",
+      "notInSteam": false
+    },
+    {
+      "id": "HACKNET_NODE_10M",
+      "name": "The original hacker",
+      "description": "Make 10m from hacknet nodes.",
+      "notInSteam": false
+    },
+    {
+      "id": "HACKNET_SERVER_1B",
+      "name": "Not passive anymore",
+      "description": "Make $1b with hacknet servers.",
+      "notInSteam": false
+    },
+    {
+      "id": "HOSPITALIZED",
+      "name": "Ouch!",
+      "description": "Go to the hospital.",
+      "notInSteam": false
+    },
+    {
+      "id": "HTTPWORM.EXE",
+      "name": "HTTPWorm.exe",
+      "description": "Acquire HTTPWorm.exe",
+      "notInSteam": false
+    },
+    {
+      "id": "ILLUMINATI",
+      "name": "Illuminati",
+      "description": "Join the Illuminati.",
+      "notInSteam": false
+    },
+    {
+      "id": "INDECISIVE",
+      "name": "Too many options.",
+      "description": "Spend 1h straight on the bitverse.",
+      "notInSteam": false
+    },
+    {
+      "id": "INSTALL_1",
+      "name": "I never asked for this.",
+      "description": "Install your first augmentation.",
+      "notInSteam": false
+    },
+    {
+      "id": "INSTALL_100",
+      "name": "I asked for this.",
+      "description": "Have 100 augmentation installed at once.",
+      "notInSteam": false
+    },
+    {
+      "id": "INTELLIGENCE_255",
+      "name": "Smart!",
+      "description": "Reach intelligence 255",
+      "notInSteam": false
+    },
+    {
+      "id": "IPVGO_ANTICHEAT",
+      "name": "IPvGO anticheat",
+      "description": "Fail to cheat an IPvGO game and be ejected from the subnet.",
+      "notInSteam": true
+    },
+    {
+      "id": "IPVGO_WINNING_STREAK",
+      "name": "Ten Steps Ahead",
+      "description": "Get a winning streak of 10 against Illuminati.",
+      "notInSteam": true
+    },
+    {
+      "id": "KARMA_1000000",
+      "name": "Wretched hive of scum and villainy",
+      "description": "Reach -1m karma.",
+      "notInSteam": false
+    },
+    {
+      "id": "MAX_CACHE",
+      "name": "What a waste.",
+      "description": "Cap your hashes.",
+      "notInSteam": false
+    },
+    {
+      "id": "MAX_CORES",
+      "name": "Download more cores?",
+      "description": "Maximize your home computer cores.",
+      "notInSteam": false
+    },
+    {
+      "id": "MAX_HACKNET_NODE",
+      "name": "That's the limit",
+      "description": "Maximize a hacknet node.",
+      "notInSteam": false
+    },
+    {
+      "id": "MAX_HACKNET_SERVER",
+      "name": "That's the new limit.",
+      "description": "Maximize a hacknet server.",
+      "notInSteam": false
+    },
+    {
+      "id": "MAX_RAM",
+      "name": "Download more ram",
+      "description": "Maximize your home computer ram.",
+      "notInSteam": false
+    },
+    {
+      "id": "MONEY_1Q",
+      "name": "Here comes the money!",
+      "description": "Have $1Q on your home computer.",
+      "notInSteam": false
+    },
+    {
+      "id": "MONEY_M1B",
+      "name": "Massive debt",
+      "description": "Be $1b in debt.",
+      "notInSteam": false
+    },
+    {
+      "id": "N00DLES",
+      "name": "Exploit: noodles",
+      "description": "Harness the power of the noodles.",
+      "notInSteam": false
+    },
+    {
+      "id": "NEUROFLUX_255",
+      "name": "Neuroflux is love, Neuroflux is live",
+      "description": "Install Neuroflux Governor level 255",
+      "notInSteam": false
+    },
+    {
+      "id": "NITESEC",
+      "name": "avmnite-02h",
+      "description": "Join NiteSec.",
+      "notInSteam": false
+    },
+    {
+      "id": "NS2",
+      "name": "Maximum speed!",
+      "description": "Write an ns2 script.",
+      "notInSteam": false
+    },
+    {
+      "id": "PROTOTYPETAMPERING",
+      "name": "Exploit: prototype tampering",
+      "description": "Tamper with the Numbers prototype.",
+      "notInSteam": false
+    },
+    {
+      "id": "QUEUE_40",
+      "name": "It's time to install",
+      "description": "Have 40 augmentation queued at once.",
+      "notInSteam": false
+    },
+    {
+      "id": "RAINBOW",
+      "name": "Exploit: rainbow",
+      "description": "Make good use of the rainbow.",
+      "notInSteam": false
+    },
+    {
+      "id": "REALITYALTERATION",
+      "name": "Exploit: reality alteration",
+      "description": "Alter reality.",
+      "notInSteam": false
+    },
+    {
+      "id": "RELAYSMTP.EXE",
+      "name": "relaySMTP.exe",
+      "description": "Acquire relaySMTP.exe",
+      "notInSteam": false
+    },
+    {
+      "id": "REPUTATION_10M",
+      "name": "Well liked",
+      "description": "Reach 10m reputation with a faction.",
+      "notInSteam": false
+    },
+    {
+      "id": "RUNNING_SCRIPTS_1000",
+      "name": "Need more real life ram",
+      "description": "Run 1000 scripts simultaneously.",
+      "notInSteam": false
+    },
+    {
+      "id": "SCRIPTS_30",
+      "name": "Thank you folders!",
+      "description": "Have 30 scripts on your home computer.",
+      "notInSteam": false
+    },
+    {
+      "id": "SCRIPT_32GB",
+      "name": "You'll need upgrade for this one.",
+      "description": "Write a script that costs 32GB per thread.",
+      "notInSteam": false
+    },
+    {
+      "id": "SF1.1",
+      "name": "Source Genesis",
+      "description": "Acquire SF1.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF10.1",
+      "name": "Digital Carbon",
+      "description": "Acquire SF10.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF11.1",
+      "name": "The Big Crash",
+      "description": "Acquire SF11.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF12.1",
+      "name": "The Recursion",
+      "description": "Acquire SF12.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF13.1",
+      "name": "They're lunatics",
+      "description": "Acquire SF13.1",
+      "notInSteam": true
+    },
+    {
+      "id": "SF14.1",
+      "name": "IPvGO Subnet Takeover",
+      "description": "Acquire SF14.1",
+      "notInSteam": true
+    },
+    {
+      "id": "SF15.1",
+      "name": "The Secrets of the Dark Net",
+      "description": "Acquire SF15.1",
+      "notInSteam": true
+    },
+    {
+      "id": "SF2.1",
+      "name": "Rise of the Underworld",
+      "description": "Acquire SF2.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF3.1",
+      "name": "Corporatocracy",
+      "description": "Acquire SF3.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF4.1",
+      "name": "The Singularity",
+      "description": "Acquire SF4.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF5.1",
+      "name": "Artificial Intelligence",
+      "description": "Acquire SF5.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF6.1",
+      "name": "Bladeburners",
+      "description": "Acquire SF6.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF7.1",
+      "name": "Bladeburners 2079",
+      "description": "Acquire SF7.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF8.1",
+      "name": "Ghost of Wall Street",
+      "description": "Acquire SF8.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SF9.1",
+      "name": "Hacktocracy",
+      "description": "Acquire SF9.1",
+      "notInSteam": false
+    },
+    {
+      "id": "SLEEVE_8",
+      "name": "You and what army?",
+      "description": "Acquire all 8 sleeves.",
+      "notInSteam": false
+    },
+    {
+      "id": "SQLINJECT.EXE",
+      "name": "SQLInject.exe",
+      "description": "Acquire SQLInject.exe",
+      "notInSteam": false
+    },
+    {
+      "id": "STOCK_1q",
+      "name": "Wolf of wall street.",
+      "description": "Make 1q on the stock market.",
+      "notInSteam": false
+    },
+    {
+      "id": "THE_BLACK_HAND",
+      "name": "I.I.I.I",
+      "description": "Join The Black Hand.",
+      "notInSteam": false
+    },
+    {
+      "id": "THE_COVENANT",
+      "name": "The Covenant",
+      "description": "Join The Covenant.",
+      "notInSteam": false
+    },
+    {
+      "id": "TIMECOMPRESSION",
+      "name": "Exploit: time compression",
+      "description": "Compress time.",
+      "notInSteam": false
+    },
+    {
+      "id": "TOR",
+      "name": "The Onion Network",
+      "description": "Purchase the TOR router.",
+      "notInSteam": false
+    },
+    {
+      "id": "TRAVEL",
+      "name": "World explorer",
+      "description": "Travel anywhere.",
+      "notInSteam": false
+    },
+    {
+      "id": "TRUE_RECURSION",
+      "name": "Exploit: true recursion",
+      "description": "Beat BN1 in megabyteburner 2000.",
+      "notInSteam": false
+    },
+    {
+      "id": "UNACHIEVABLE",
+      "name": "UNACHIEVABLE",
+      "description": "This achievement cannot be unlocked.",
+      "notInSteam": false
+    },
+    {
+      "id": "UNCLICKABLE",
+      "name": "Exploit: unclickable",
+      "description": "Click the unclickable.",
+      "notInSteam": false
+    },
+    {
+      "id": "UNDOCUMENTEDFUNCTIONCALL",
+      "name": "Exploit: undocumented",
+      "description": "Call the undocumented function.",
+      "notInSteam": false
+    },
+    {
+      "id": "WORKOUT",
+      "name": "Gains!",
+      "description": "Workout at a gym.",
+      "notInSteam": false
+    }
+  ]
+}

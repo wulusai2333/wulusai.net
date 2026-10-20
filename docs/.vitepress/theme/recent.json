@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-20T01:57:28.967Z",
-  "totalDocs": 36,
-  "totalChars": 135680,
+  "generatedAt": "2026-10-20T07:32:20.089Z",
+  "totalDocs": 37,
+  "totalChars": 146873,
   "sections": [
     {
       "icon": "☕",
@@ -84,50 +84,50 @@
       "icon": "📦",
       "text": "杂项",
       "desc": "Windows、Bitburner 等折腾记录",
-      "count": 7,
+      "count": 8,
       "link": "/Others/windows"
     }
   ],
   "recent": [
     {
-      "title": "压缩包解密",
-      "url": "/Others/breakzip",
+      "title": "Bitburner 108 全成就速通",
+      "url": "/Others/bitburner-108",
       "date": "2026-10-20",
       "section": "杂项",
       "icon": "📦"
     },
     {
-      "title": "hashcat 实战复盘",
-      "url": "/Security/hashcat实战复盘",
+      "title": "安装编译环境",
+      "url": "/C/C",
       "date": "2026-10-20",
-      "section": "安全实验",
-      "icon": "🔓"
+      "section": "C / C++",
+      "icon": "🔧"
     },
     {
-      "title": "压缩包口令破解的优先级",
-      "url": "/Security/压缩包破解优先级",
+      "title": "MySQL（Windows 安装）",
+      "url": "/DataBase/mysql",
       "date": "2026-10-20",
-      "section": "安全实验",
-      "icon": "🔓"
+      "section": "数据库",
+      "icon": "🗄️"
     },
     {
-      "title": "密码字典从哪来",
-      "url": "/Security/密码字典从哪来",
+      "title": "PostgreSQL",
+      "url": "/DataBase/postgresql",
       "date": "2026-10-20",
-      "section": "安全实验",
-      "icon": "🔓"
+      "section": "数据库",
+      "icon": "🗄️"
+    },
+    {
+      "title": "Fabric 起步",
+      "url": "/Fabric/start",
+      "date": "2026-10-20",
+      "section": "Hyperledger Fabric",
+      "icon": "⛓️"
     },
     {
       "title": "分支、合并与冲突",
       "url": "/Git/分支与合并",
-      "date": "2026-10-19",
-      "section": "Git",
-      "icon": "🌿"
-    },
-    {
-      "title": "常用语法与配置",
-      "url": "/Git/常用语法",
-      "date": "2026-10-19",
+      "date": "2026-10-20",
       "section": "Git",
       "icon": "🌿"
     }

@@ -121,6 +121,7 @@
       "order": [
         "Others/windows.md",
         "Others/bitburner.md",
+        "Others/bitburner-108.md",
         "Others/breakzip.md",
         "Others/LibList.md",
         "Others/dnf.md",
@@ -156,6 +157,7 @@
     "NovelAIDiffusion/近似NovelAI调整.md": "近似 NovelAI 调整",
     "Others/LibList.md": "常用资料清单",
     "Others/bitburner.md": "Bitburner 脚本",
+    "Others/bitburner-108.md": "Bitburner 108 全成就速通",
     "Others/breakzip.md": "压缩包解密",
     "Others/dnf.md": "DNF 折腾记录",
     "Others/k8s.md": "Kubernetes",

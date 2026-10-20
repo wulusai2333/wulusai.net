@@ -1,0 +1,335 @@
+{
+  "meta": {
+    "version": 1,
+    "gameVersion": "v3.0.1 (commit 3162fd2)",
+    "note": "轮次表。台账工具 tools/status.mjs 用它把存档里的成就集合反推成进度。",
+    "about": "D4 极速路线绕过了这张表(直接注入 108 条)。这张表的价值有两层:① 说明每条成就『本来要靠什么拿到』,便于抽查注入结果是否合理;② 给不想改档的人一条真实可走的路线。",
+    "runKinds": {
+      "bn": "进入某个 BitNode 打穿一次,结束时必须拿到 goals 里的成就",
+      "cross": "横跨整条路线的长期目标(没有独立轮次,靠累积达成)",
+      "tech": "与本机环境/客户端状态有关的成就,不走正常轮次"
+    }
+  },
+  "runs": [
+    {
+      "id": "R01",
+      "bn": 1,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN1 冷启动",
+      "goals": ["SF1.1", "CHALLENGE_BN1", "FAST_BN", "HOSPITALIZED", "DISCOUNT", "DRAIN_SERVER", "SCRIPTS_30", "SCRIPT_32GB", "RUNNING_SCRIPTS_1000", "TOR", "TRAVEL", "WORKOUT", "NS2"],
+      "constraints": ["home maxRam <= 128 且 cores === 1（挑战条件，只需不买 core）"],
+      "notes": "干净存档第一轮,没有 SF4 就用不了 Singularity;这一轮只能靠 UI/终端半自动完成。TOR 也必须在早期买,后面几个程序才能买。"
+    },
+    {
+      "id": "R02",
+      "bn": 4,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN4 解锁全自动化",
+      "goals": ["SF4.1"],
+      "constraints": [],
+      "notes": "BN4 内部 Singularity 原生可用且 RAM 不打折。拿到 SF4.1 之后其余所有 BN 都能全自动。这是整条路线的关键杠杆。"
+    },
+    {
+      "id": "R03",
+      "bn": 2,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN2 帮派",
+      "goals": ["SF2.1", "GANG", "FULL_GANG", "GANG_TERRITORY", "GANG_MEMBER_POWER"],
+      "constraints": [],
+      "notes": "karma 到 -54000 才能建帮;World Daemon 需要 hacking 15000。"
+    },
+    {
+      "id": "R04",
+      "bn": 2,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN2 挑战",
+      "goals": ["CHALLENGE_BN2"],
+      "constraints": ["全程 gang === null"],
+      "notes": "没有帮派就只能走 Daedalus 拿 The Red Pill。"
+    },
+    {
+      "id": "R05",
+      "bn": 3,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN3 公司",
+      "goals": ["SF3.1", "CORPORATION", "CORPORATION_BRIBE", "CORPORATION_PROD_1000", "CORPORATION_EMPLOYEE_3000", "CORPORATION_REAL_ESTATE"],
+      "constraints": [],
+      "notes": "BN3 建公司自带启动资金 150e9,所以这一轮是白送的公司成就群。"
+    },
+    {
+      "id": "R06",
+      "bn": 3,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN3 挑战",
+      "goals": ["CHALLENGE_BN3"],
+      "constraints": ["全程 corporation === null"],
+      "notes": ""
+    },
+    {
+      "id": "R07",
+      "bn": 5,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN5 智力",
+      "goals": ["SF5.1", "INTELLIGENCE_255", "FORMULAS.EXE"],
+      "constraints": [],
+      "notes": "INTELLIGENCE_255 是长线,从这一轮起每轮都要挂满。FORMULAS.EXE 售价 5e9,是本组最贵的程序。"
+    },
+    {
+      "id": "R08",
+      "bn": 6,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN6 刀锋",
+      "goals": ["SF6.1", "BLADEBURNER_DIVISION", "BLADEBURNER_OVERCLOCK", "BLADEBURNER_UNSPENT_100000"],
+      "constraints": [],
+      "notes": "Overclock 满级 90;UNSPENT 要求结束时留 1e5 未花技能点,所以先别花。"
+    },
+    {
+      "id": "R09",
+      "bn": 6,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN6 挑战",
+      "goals": ["CHALLENGE_BN6"],
+      "constraints": ["全程 bladeburner === null"],
+      "notes": ""
+    },
+    {
+      "id": "R10",
+      "bn": 7,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN7",
+      "goals": ["SF7.1"],
+      "constraints": [],
+      "notes": "World Daemon 需要 hacking 6000;BN7 会削弱刀锋倍率。"
+    },
+    {
+      "id": "R11",
+      "bn": 7,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN7 挑战",
+      "goals": ["CHALLENGE_BN7"],
+      "constraints": ["全程 bladeburner === null"],
+      "notes": ""
+    },
+    {
+      "id": "R12",
+      "bn": 8,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN8 股市",
+      "goals": ["SF8.1", "4S", "STOCK_1q", "MONEY_1Q"],
+      "constraints": [],
+      "notes": "BN8 起始 250e6、4S 免费,但其余收入源全为 0;MONEY_1Q(1e18) 只能靠股市。"
+    },
+    {
+      "id": "R13",
+      "bn": 8,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN8 挑战",
+      "goals": ["CHALLENGE_BN8"],
+      "constraints": ["!has4SData 且 !has4SDataTixApi"],
+      "notes": "4S 买入不可退,所以必须与 R12 分轮。"
+    },
+    {
+      "id": "R14",
+      "bn": 9,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN9 hacknet",
+      "goals": ["SF9.1", "FIRST_HACKNET_NODE", "FIRST_HACKNET_SERVER", "ALL_HACKNET_SERVER", "MAX_HACKNET_SERVER", "HACKNET_SERVER_1B", "MAX_CACHE", "30_HACKNET_NODE", "MAX_HACKNET_NODE", "HACKNET_NODE_10M"],
+      "constraints": [],
+      "notes": "BN9 云服务器限 0。hacknet 节点组与服务器组在同一轮互斥(hasHacknetServers 只有一个取值),另一侧靠 AdditionalUnlock 补发 —— 所以两组目标都放在本轮,靠多次 install 分别触发。"
+    },
+    {
+      "id": "R15",
+      "bn": 9,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN9 挑战",
+      "goals": ["CHALLENGE_BN9"],
+      "constraints": ["hacknet 收益与支出流水恒 0"],
+      "notes": "本轮禁止一切 ns.hacknet.*。"
+    },
+    {
+      "id": "R16",
+      "bn": 10,
+      "kind": "bn",
+      "repeat": 3,
+      "label": "BN10 袖子 ×3",
+      "goals": ["SF10.1"],
+      "constraints": [],
+      "notes": "第 3 次通关后 SF10=3,才可能触发 SLEEVE_8。"
+    },
+    {
+      "id": "R17",
+      "bn": 10,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN10 八个袖子",
+      "goals": ["SLEEVE_8"],
+      "constraints": ["必须在 sourceFileLvl(10) === 3 之后的这一轮"],
+      "notes": "买满 8 个 sleeve,但不训练(训练就毁掉 R18)。"
+    },
+    {
+      "id": "R18",
+      "bn": 10,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN10 挑战",
+      "goals": ["CHALLENGE_BN10"],
+      "constraints": ["所有 sleeve 零经验零义体"],
+      "notes": ""
+    },
+    {
+      "id": "R19",
+      "bn": 11,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN11",
+      "goals": ["SF11.1"],
+      "constraints": [],
+      "notes": "BN11 把收入削到 1/100。"
+    },
+    {
+      "id": "R20",
+      "bn": 12,
+      "kind": "bn",
+      "repeat": 50,
+      "label": "BN12 递归 ×50",
+      "goals": ["SF12.1", "CHALLENGE_BN12"],
+      "constraints": [],
+      "notes": "World Daemon 需求 = 3000 × 1.02^(SF12+1),越刷越难。这是全路线轮数最多的一项(50 轮)。"
+    },
+    {
+      "id": "R21",
+      "bn": 13,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN13",
+      "goals": ["SF13.1", "CHALLENGE_BN13"],
+      "constraints": ["不领取 Stanek's Gift"],
+      "notes": "108 条里没有 Stanek 相关成就,所以常规轮与挑战可以合并成一轮。"
+    },
+    {
+      "id": "R22",
+      "bn": 14,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN14 IPvGO",
+      "goals": ["SF14.1", "IPVGO_WINNING_STREAK"],
+      "constraints": [],
+      "notes": "WD 15000,hacking 速度 0.3。IPvGO 两条都是 NotInSteam。"
+    },
+    {
+      "id": "R23",
+      "bn": 14,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN14 反作弊",
+      "goals": ["IPVGO_ANTICHEAT"],
+      "constraints": ["需要 SF14 >= 2 或 BN14 + SF14.1 才能用 ns.go.cheat"],
+      "notes": "先成功作弊一次,再故意失败到被踢出子网。"
+    },
+    {
+      "id": "R24",
+      "bn": 14,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN14 挑战",
+      "goals": ["CHALLENGE_BN14"],
+      "constraints": ["全程不得调用 ns.go.*"],
+      "notes": "与 R23 互斥:调用 ns.go 会把 Go.moveOrCheatViaApi 置 true,永久失去这条挑战。"
+    },
+    {
+      "id": "R25",
+      "bn": 15,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN15 暗网",
+      "goals": ["SF15.1", "DARKNET_BACKDOOR", "DARKNET_DEPTHS"],
+      "constraints": [],
+      "notes": "要给 50 台暗网服务器装后门;The Red Pill 在暗网第 4 个实验室(BN15 的 Daedalus 不卖)。"
+    },
+    {
+      "id": "R26",
+      "bn": 15,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "BN15 挑战",
+      "goals": ["CHALLENGE_BN15"],
+      "constraints": ["全程不得调用 ns.dnet.heartbleed"],
+      "notes": "heartbleed 会把 DarknetState.hasUsedHeartbleed 置 true,永久失去这条挑战。"
+    },
+    {
+      "id": "R27",
+      "bn": 0,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "容量轮",
+      "goals": ["HACKING_100000", "MAX_RAM", "MAX_CORES", "REPUTATION_10M", "NEUROFLUX_255", "INSTALL_100", "QUEUE_40", "THE_COVENANT", "ILLUMINATI"],
+      "constraints": ["不得与 CHALLENGE_BN1 同轮(home 升级不可逆)"],
+      "notes": "任意 BN,放在 SF 较高的后期最省力。INSTALL_100 需要同时拥有 100 件已装义体,所以长期 install 循环是前提。"
+    },
+    {
+      "id": "R28",
+      "bn": 0,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "负债轮",
+      "goals": ["COMBAT_3000", "MONEY_M1B", "KARMA_1000000"],
+      "constraints": ["money <= -1e9 的窗口内所有购买都会被拦下"],
+      "notes": "属性高时健身房扣费最快,所以 MONEY_M1B 与 COMBAT_3000 同轮。KARMA_1000000 走犯罪刷业力。"
+    },
+    {
+      "id": "R29",
+      "bn": 0,
+      "kind": "bn",
+      "repeat": 1,
+      "label": "UI 轮",
+      "goals": ["FROZE", "INDECISIVE"],
+      "constraints": [],
+      "notes": "FROZE 用「reload & kill all」清掉一次死循环;INDECISIVE 要在 BitVerse 停留满 1 小时。"
+    },
+    {
+      "id": "R30",
+      "bn": 0,
+      "kind": "cross",
+      "repeat": 1,
+      "label": "派系与程序(横跨全程)",
+      "goals": ["CYBERSEC", "NITESEC", "THE_BLACK_HAND", "BITRUNNERS", "DAEDALUS", "DONATION", "INSTALL_1", "BRUTESSH.EXE", "FTPCRACK.EXE", "RELAYSMTP.EXE", "HTTPWORM.EXE", "SQLINJECT.EXE"],
+      "constraints": [],
+      "notes": "没有独立轮次,靠累积达成。四个派系靠给对应服务器装后门解锁(CSEC / avmnite-02h / I.I.I.I / run4theh111z),后一个各需要多一个 cracking 程序;所以程序组是派系组的前置。DONATION 需要在派系页解锁捐款;INSTALL_1 是第一次 install。"
+    },
+    {
+      "id": "R31",
+      "bn": 0,
+      "kind": "tech",
+      "repeat": 1,
+      "label": "Exploit 与客户端状态",
+      "goals": ["BYPASS", "PROTOTYPETAMPERING", "UNCLICKABLE", "UNDOCUMENTEDFUNCTIONCALL", "TIMECOMPRESSION", "REALITYALTERATION", "N00DLES", "EDITSAVEFILE", "UNACHIEVABLE", "DEVMENU", "RAINBOW", "TRUE_RECURSION"],
+      "constraints": ["UNACHIEVABLE 在原版里 Condition 恒为 false,必须改客户端才有解", "EDITSAVEFILE 只能靠编辑真实存档获得"],
+      "notes": "12 条秘密成就(Source-File −1)。11 条靠游戏内设计好的彩蛋/控制台路径,BYPASS 等需要浏览器 devtools;UNACHIEVABLE 需要改 bundle。这一组与正常轮次无关,性质是『找漏洞』,游戏把它当成内容而不是漏洞(见源码 src/Exploits/Exploit.ts 的设计说明)。"
+    },
+    {
+      "id": "R32",
+      "bn": 0,
+      "kind": "cross",
+      "repeat": 1,
+      "label": "BN_DESTROYER 长线",
+      "goals": ["BN_DESTROYER"],
+      "constraints": ["要求 SF1–SF15 每个 BN 的 SourceFile 等级都 >= 3"],
+      "notes": "全场最长的单条成就:把 15 个 BN 各刷到 SF3。不计入主线轮次,是独立的后期长线。"
+    }
+  ]
+}
