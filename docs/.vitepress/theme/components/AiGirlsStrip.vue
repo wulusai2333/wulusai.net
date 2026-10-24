@@ -34,7 +34,9 @@ const picks = ['deepseek', 'gpt', 'claude', 'gemini', 'qwen', 'kimi']
         <ul class="wl-girls__grid">
           <li v-for="(girl, i) in picks" :key="girl!.id" class="wl-girl-card">
             <span class="wl-girl-card__no">{{ String(i + 1).padStart(2, '0') }}</span>
-            <img :src="girl!.src" :alt="girl!.name + ' · ' + girl!.character" :width="girl!.w" :height="girl!.h" loading="lazy" decoding="async" />
+            <figure>
+              <img :src="girl!.src" :alt="girl!.name + ' · ' + girl!.character" :width="girl!.w" :height="girl!.h" loading="lazy" decoding="async" />
+            </figure>
             <div class="wl-girl-card__meta">
               <strong>{{ girl!.name }}</strong>
               <span>{{ girl!.character }}</span>

@@ -1209,7 +1209,11 @@ html.wl-lock {
 }
 
 /* ---------------------------------------------------------------------------
-   7. AI 娘 · 暖纸展柜
+   7. AI 娘 · 展柜
+   ----------------------------------------------------------------------------
+   立绘是白底原图，靠 multiply 融进背景，所以「纸」必须留在图位本身。
+   深色（默认）：整条压成深海展柜，纸只垫在每张立绘下面；
+   浅色：整条铺暖纸。
    ------------------------------------------------------------------------ */
 .wl-girls {
   background: transparent;
@@ -1219,19 +1223,22 @@ html.wl-lock {
   position: relative;
   padding: 96px 0;
   overflow: hidden;
-  background: var(--wl-paper);
-  color: #1a1e2b;
+  border-top: 1px solid var(--vp-c-border);
+  border-bottom: 1px solid var(--vp-c-border);
+  background: linear-gradient(180deg, rgba(19, 28, 70, 0.38), rgba(7, 11, 31, 0.5));
+  color: var(--vp-c-text-1);
 }
 
+/* 展柜玻璃上的冷光与颗粒 */
 .wl-girls__paper::before {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.65;
   background-image:
-    radial-gradient(rgba(80, 68, 45, 0.08) 0.5px, transparent 0.5px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.35), transparent 30%, rgba(180, 160, 120, 0.08));
+    radial-gradient(rgba(200, 220, 255, 0.09) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, rgba(127, 216, 255, 0.1), transparent 30%, rgba(200, 169, 240, 0.08));
   background-size:
     4px 4px,
     100% 100%;
@@ -1247,7 +1254,15 @@ html.wl-lock {
   justify-content: space-between;
   gap: 36px;
   padding-bottom: 26px;
-  border-bottom: 1px solid rgba(30, 35, 50, 0.18);
+  border-bottom: 1px solid var(--wl-line);
+}
+
+.wl-girls .wl-eyebrow--ink {
+  color: rgba(214, 226, 255, 0.62);
+}
+
+.wl-girls .wl-eyebrow--ink > span:first-child::before {
+  background: var(--wl-gold);
 }
 
 .wl-girls__head h2 {
@@ -1257,7 +1272,7 @@ html.wl-lock {
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.04;
-  color: #151a28;
+  color: var(--vp-c-text-1);
 }
 
 .wl-girls__head p {
@@ -1265,14 +1280,14 @@ html.wl-lock {
   margin: 0;
   font-size: 0.9rem;
   line-height: 1.9;
-  color: #626775;
+  color: var(--wl-muted);
 }
 
 .wl-girls__stamp {
   flex: none;
   padding: 14px 18px;
-  border: 1px solid rgba(138, 63, 63, 0.4);
-  color: #8a3f3f;
+  border: 1px solid rgba(232, 200, 138, 0.45);
+  color: var(--wl-gold);
   font-family: var(--wl-serif);
   font-size: 2.8rem;
   line-height: 0.82;
@@ -1297,27 +1312,30 @@ html.wl-lock {
 
 .wl-girl-card {
   position: relative;
-  padding: 10px 10px 12px;
-  border: 1px solid rgba(30, 35, 50, 0.12);
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(40, 40, 30, 0.06);
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .wl-girl-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(40, 40, 30, 0.14);
 }
 
-.wl-girl-card__no {
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  font-family: var(--vp-font-family-mono);
-  font-size: 0.56rem;
-  color: #a4a49a;
+/* 图位的「纸」：白底立绘靠 multiply 融在纸里，深色下就是一块打过光的照片 */
+.wl-girl-card figure {
+  margin: 0;
+  padding: 8px;
+  background: #f4f1e8;
+  box-shadow: 0 10px 26px rgba(3, 6, 20, 0.5);
+  transition: box-shadow 0.4s ease;
+}
+
+.wl-girl-card:hover figure {
+  box-shadow:
+    0 18px 40px rgba(3, 6, 20, 0.55),
+    0 0 0 1px rgba(107, 121, 245, 0.28);
 }
 
 .wl-girl-card img {
@@ -1326,6 +1344,16 @@ html.wl-lock {
   aspect-ratio: 2 / 3;
   object-fit: contain;
   mix-blend-mode: multiply;
+}
+
+.wl-girl-card__no {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  z-index: 1;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.56rem;
+  color: rgba(40, 44, 58, 0.45);
 }
 
 .wl-girl-card__meta {
@@ -1338,19 +1366,20 @@ html.wl-lock {
 .wl-girl-card__meta strong {
   font-family: var(--wl-serif);
   font-size: 0.92rem;
-  color: #171b27;
+  color: var(--vp-c-text-1);
 }
 
 .wl-girl-card__meta span {
   font-size: 0.68rem;
-  color: #6b6f7c;
+  color: var(--vp-c-text-2);
 }
 
 .wl-girl-card__meta em {
   font-style: normal;
   font-size: 0.55rem;
   letter-spacing: 0.12em;
-  color: #9a8a6a;
+  color: var(--wl-gold);
+  opacity: 0.8;
   text-transform: uppercase;
 }
 
@@ -1361,7 +1390,7 @@ html.wl-lock {
   gap: 32px;
   margin-top: 34px;
   padding-top: 20px;
-  border-top: 1px solid rgba(30, 35, 50, 0.18);
+  border-top: 1px solid var(--wl-line);
 }
 
 .wl-girls__foot p {
@@ -1369,7 +1398,7 @@ html.wl-lock {
   margin: 0;
   font-size: 0.68rem;
   line-height: 1.8;
-  color: #777b86;
+  color: var(--vp-c-text-3);
 }
 
 .wl-girls__links {
@@ -1382,8 +1411,99 @@ html.wl-lock {
 .wl-girls__foot a {
   flex: none;
   padding-bottom: 2px;
-  border-bottom: 1px solid #1a1e2b;
+  border-bottom: 1px solid currentColor;
   font-size: 0.78rem;
+  color: var(--vp-c-text-1);
+}
+
+/* 浅色：整条铺暖纸，图位不再单独打底 */
+html:not(.dark) .wl-girls__paper {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  background: var(--wl-paper);
+  color: #1a1e2b;
+}
+
+html:not(.dark) .wl-girls__paper::before {
+  opacity: 0.5;
+  background-image:
+    radial-gradient(rgba(80, 68, 45, 0.08) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.35), transparent 30%, rgba(180, 160, 120, 0.08));
+}
+
+html:not(.dark) .wl-girls__head {
+  border-bottom-color: rgba(30, 35, 50, 0.18);
+}
+
+html:not(.dark) .wl-girls .wl-eyebrow--ink {
+  color: #6d7281;
+}
+
+html:not(.dark) .wl-girls .wl-eyebrow--ink > span:first-child::before {
+  background: #9a6a4a;
+}
+
+html:not(.dark) .wl-girls__head h2 {
+  color: #151a28;
+}
+
+html:not(.dark) .wl-girls__head p {
+  color: #626775;
+}
+
+html:not(.dark) .wl-girls__stamp {
+  border-color: rgba(138, 63, 63, 0.4);
+  color: #8a3f3f;
+}
+
+html:not(.dark) .wl-girl-card {
+  padding: 10px 10px 12px;
+  border: 1px solid rgba(30, 35, 50, 0.12);
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(40, 40, 30, 0.06);
+}
+
+html:not(.dark) .wl-girl-card:hover {
+  box-shadow: 0 18px 40px rgba(40, 40, 30, 0.14);
+}
+
+html:not(.dark) .wl-girl-card figure {
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+html:not(.dark) .wl-girl-card:hover figure {
+  box-shadow: none;
+}
+
+html:not(.dark) .wl-girl-card__no {
+  color: #a4a49a;
+}
+
+html:not(.dark) .wl-girl-card__meta strong {
+  color: #171b27;
+}
+
+html:not(.dark) .wl-girl-card__meta span {
+  color: #6b6f7c;
+}
+
+html:not(.dark) .wl-girl-card__meta em {
+  color: #9a8a6a;
+  opacity: 1;
+}
+
+html:not(.dark) .wl-girls__foot {
+  border-top-color: rgba(30, 35, 50, 0.18);
+}
+
+html:not(.dark) .wl-girls__foot p {
+  color: #777b86;
+}
+
+html:not(.dark) .wl-girls__foot a {
+  border-bottom-color: #1a1e2b;
   color: #1a1e2b;
 }
 

@@ -503,20 +503,26 @@ html:not(.dark) .VPDoc {
 }
 
 /* ---------------------------------------------------------------------------
-   6. AI 娘档案页 · 暖纸展柜
+   6. AI 娘档案页 · 展柜
+   ----------------------------------------------------------------------------
+   立绘是白底原图，靠 multiply 融进背景，所以「纸」必须留在图位本身。
+   深色（默认）：整块面板压成深海展柜，纸只垫在每张立绘下面，像暗房里打光的照片；
+   浅色：铺满暖纸，图位不再单独打底。
    ------------------------------------------------------------------------ */
 .wl-archive {
   margin: 2.2rem 0 2.8rem;
 }
 
-/* 暖纸面板与正文同宽，像夹在图录里的一页纸 */
+/* 深色展柜：与正文同宽，玻璃里的冷光 */
 .wl-archive__paper {
   position: relative;
   margin: 0;
   padding: 34px 26px 30px;
   overflow: hidden;
-  background: #f4f1e8;
-  color: #1a1e2b;
+  background: linear-gradient(180deg, rgba(19, 28, 70, 0.5), rgba(7, 11, 31, 0.62));
+  border: 1px solid var(--vp-c-border);
+  color: var(--vp-c-text-1);
+  box-shadow: var(--wl-shadow-1);
 }
 
 @media (min-width: 768px) {
@@ -530,10 +536,10 @@ html:not(.dark) .VPDoc {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.7;
   background-image:
-    radial-gradient(rgba(80, 68, 45, 0.08) 0.5px, transparent 0.5px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.4), transparent 34%, rgba(180, 160, 120, 0.1));
+    radial-gradient(rgba(200, 220, 255, 0.09) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, rgba(127, 216, 255, 0.1), transparent 34%, rgba(200, 169, 240, 0.08));
   background-size:
     4px 4px,
     100% 100%;
@@ -545,7 +551,7 @@ html:not(.dark) .VPDoc {
 
 .wl-archive__head {
   padding-bottom: 22px;
-  border-bottom: 1px solid rgba(30, 35, 50, 0.18);
+  border-bottom: 1px solid var(--wl-page-line);
 }
 
 .wl-archive__eyebrow {
@@ -558,19 +564,20 @@ html:not(.dark) .VPDoc {
   font-size: 0.64rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #7b6f5c;
+  color: var(--vp-c-text-3);
 }
 
 .wl-archive__meta {
   letter-spacing: 0.12em;
-  color: #9a8a6a;
+  color: var(--wl-gold);
+  opacity: 0.85;
 }
 
 .wl-archive__lede {
   margin: 0;
   font-size: 0.9rem;
   line-height: 1.9;
-  color: #5c606c;
+  color: var(--vp-c-text-2);
 }
 
 .wl-archive__grid {
@@ -598,18 +605,29 @@ html:not(.dark) .VPDoc {
 .wl-archive__card {
   position: relative;
   margin: 0;
-  padding: 10px 10px 12px;
-  border: 1px solid rgba(30, 35, 50, 0.12);
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(40, 40, 30, 0.06);
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease;
+  padding: 0;
+  border: 0;
+  background: none;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .wl-archive__card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(40, 40, 30, 0.16);
+}
+
+/* 图位的「纸」：白底立绘靠 multiply 融在纸里，深色下就是一块打过光的照片 */
+.wl-archive__card figure {
+  margin: 0;
+  padding: 8px;
+  background: #f4f1e8;
+  box-shadow: 0 10px 26px rgba(3, 6, 20, 0.5);
+  transition: box-shadow 0.4s ease;
+}
+
+.wl-archive__card:hover figure {
+  box-shadow:
+    0 18px 40px rgba(3, 6, 20, 0.55),
+    0 0 0 1px rgba(107, 121, 245, 0.28);
 }
 
 .wl-archive__no {
@@ -620,11 +638,7 @@ html:not(.dark) .VPDoc {
   font-family: var(--vp-font-family-mono);
   font-size: 0.58rem;
   letter-spacing: 0.08em;
-  color: #a4a49a;
-}
-
-.wl-archive__card figure {
-  margin: 0;
+  color: rgba(40, 44, 58, 0.45);
 }
 
 .wl-archive__card img {
@@ -649,16 +663,15 @@ html:not(.dark) .VPDoc {
 }
 
 .wl-archive .wl-archive__text strong {
-  font-family: 'Noto Serif SC Display', 'Songti SC', 'Noto Serif CJK SC', 'Source Han Serif SC',
-    'STSong', serif;
+  font-family: var(--wl-serif);
   font-size: 0.95rem;
   font-weight: 600;
-  color: #171b27;
+  color: var(--vp-c-text-1);
 }
 
 .wl-archive__text span {
   font-size: 0.7rem;
-  color: #6b6f7c;
+  color: var(--vp-c-text-2);
 }
 
 .wl-archive__text em {
@@ -666,13 +679,84 @@ html:not(.dark) .VPDoc {
   font-size: 0.56rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #9a8a6a;
+  color: var(--wl-gold);
+  opacity: 0.8;
 }
 
 @media (max-width: 620px) {
   .wl-archive__paper {
     padding: 26px 18px 22px;
   }
+}
+
+/* 浅色：整块铺暖纸，图位不再单独打底 */
+html:not(.dark) .wl-archive__paper {
+  background: #f4f1e8;
+  border-color: transparent;
+  color: #1a1e2b;
+  box-shadow: none;
+}
+
+html:not(.dark) .wl-archive__paper::before {
+  opacity: 0.55;
+  background-image:
+    radial-gradient(rgba(80, 68, 45, 0.08) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.4), transparent 34%, rgba(180, 160, 120, 0.1));
+}
+
+html:not(.dark) .wl-archive__head {
+  border-bottom-color: rgba(30, 35, 50, 0.18);
+}
+
+html:not(.dark) .wl-archive__eyebrow {
+  color: #7b6f5c;
+}
+
+html:not(.dark) .wl-archive__meta {
+  color: #9a8a6a;
+  opacity: 1;
+}
+
+html:not(.dark) .wl-archive__lede {
+  color: #5c606c;
+}
+
+html:not(.dark) .wl-archive__card {
+  padding: 10px 10px 12px;
+  border: 1px solid rgba(30, 35, 50, 0.12);
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(40, 40, 30, 0.06);
+}
+
+html:not(.dark) .wl-archive__card:hover {
+  box-shadow: 0 18px 40px rgba(40, 40, 30, 0.16);
+}
+
+html:not(.dark) .wl-archive__card figure {
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+html:not(.dark) .wl-archive__card:hover figure {
+  box-shadow: none;
+}
+
+html:not(.dark) .wl-archive__no {
+  color: #a4a49a;
+}
+
+html:not(.dark) .wl-archive .wl-archive__text strong {
+  color: #171b27;
+}
+
+html:not(.dark) .wl-archive__text span {
+  color: #6b6f7c;
+}
+
+html:not(.dark) .wl-archive__text em {
+  color: #9a8a6a;
+  opacity: 1;
 }
 
 /* ---------------------------------------------------------------------------
