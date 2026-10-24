@@ -102,6 +102,7 @@
       "order": [
         "Security/压缩包破解优先级.md",
         "Security/密码字典从哪来.md",
+        "Security/hashcat速查.md",
         "Security/hashcat实战复盘.md"
       ]
     },
@@ -131,16 +132,12 @@
       "dir": "Others",
       "icon": "📦",
       "text": "杂项",
-      "desc": "Windows、Bitburner 等折腾记录",
+      "desc": "Bitburner、K8s 等零散记录",
       "collapsed": true,
       "order": [
-        "Others/windows.md",
         "Others/bitburner.md",
         "Others/bitburner-108.md",
-        "Others/breakzip.md",
         "Others/LibList.md",
-        "Others/dnf.md",
-        "Others/华为移动应用引擎安装第三方APP.md",
         "Others/k8s.md"
       ]
     }
@@ -179,15 +176,12 @@
     "Others/LibList.md": "常用资料清单",
     "Others/bitburner.md": "Bitburner 脚本",
     "Others/bitburner-108.md": "Bitburner 108 全成就速通",
-    "Others/breakzip.md": "压缩包解密",
-    "Others/dnf.md": "DNF 折腾记录",
     "Others/k8s.md": "Kubernetes",
-    "Others/windows.md": "Windows 小技巧",
-    "Others/华为移动应用引擎安装第三方APP.md": "华为移动应用引擎装第三方 APP",
     "Python/python.md": "Python 笔记",
     "Rust/start.md": "Rust 起步",
     "Security/压缩包破解优先级.md": "压缩包口令破解的优先级",
     "Security/密码字典从哪来.md": "密码字典从哪来",
+    "Security/hashcat速查.md": "hashcat 速查",
     "Security/hashcat实战复盘.md": "hashcat 实战复盘"
   }
 }

@@ -26,14 +26,11 @@
   "Others/LibList.md": "按 markdown、前端、网络、后端与学习路线分类的资料链接清单，含 Typora 免费版 0.11.18。",
   "Others/bitburner-108.md": "改存档加调 electronBridge，点亮 Bitburner v3.0.1 全 108 条成就，开 9222 口。",
   "Others/bitburner.md": "Bitburner 三脚本：start.js 循环 weaken/grow/hack，hack.js 铺满全网。",
-  "Others/breakzip.md": "早期零散记录：zip2john 提 hash，hashcat -m 17200/11600 跑掩码与字典。",
-  "Others/dnf.md": "用 1995chen/dnf 镜像起 DNF 台服服务端：先 init.sh 建库，再起容器映射端口。",
   "Others/k8s.md": "Kubernetes 笔记尚未开写，只有占位说明和 GitHub 仓库链接，没有实质内容。",
-  "Others/windows.md": "Windows 小技巧：route -p add 配路由，certutil -hashfile 算文件 MD5。",
-  "Others/华为移动应用引擎安装第三方APP.md": "华为移动应用引擎装第三方 APK：改 config.ini 换包名，开 USB 调试后 adb install。",
   "Python/python.md": "Python 起步：conda create -n alas python==3.7.6 建并激活虚拟环境。",
   "Rust/start.md": "Rust 起步：装 rustup 与 MinGW，cargo run 编译运行，release 快 10 倍。",
   "Security/hashcat实战复盘.md": "hashcat 报 Recovered 不等于破解成功：双密码归档同过 CRC32，别按 hash 记账跳过空间。",
+  "Security/hashcat速查.md": "提 hash 的 *2john 命令、按前缀对模式表，中文口令用 --hex-charset 按 UTF-8 字节类拼掩码。",
   "Security/压缩包破解优先级.md": "先判算法再排优先级：7z l -slt 看 Method，按 hashcat -b 实测速度算预算止损。",
   "Security/密码字典从哪来.md": "SecLists、CrackStation 等四大字典来源加批量下载脚本，1 亿行仍不覆盖中文 L3。"
 }
