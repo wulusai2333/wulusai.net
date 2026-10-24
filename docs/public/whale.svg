@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 品牌鲸鱼符号（纯剪影，供 CSS mask-image 复用；颜色由使用方决定） -->
+  <g fill="#000000">
+    <ellipse cx="398" cy="184" rx="47" ry="22" transform="rotate(-41 398 184)"/>
+    <ellipse cx="420" cy="238" rx="47" ry="22" transform="rotate(25 420 238)"/>
+    <path d="M 324 272 C 350 268, 372 242, 388 212" fill="none" stroke="#000000" stroke-width="35" stroke-linecap="round"/>
+    <path d="
+      M 94 304
+      C 90 272, 105 246, 134 232
+      C 172 213, 230 209, 280 218
+      C 320 225, 350 243, 361 264
+      C 367 275, 366 287, 359 297
+      C 346 320, 313 341, 267 349
+      C 212 359, 149 351, 118 334
+      C 100 325, 95 314, 94 304 Z"/>
+  </g>
+</svg>

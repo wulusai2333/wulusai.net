@@ -1,0 +1,17 @@
+{
+  "name": "呜路塞的知识库",
+  "short_name": "呜路塞",
+  "description": "把踩过的坑、读过的书、写过的代码，都收在这里。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0b1230",
+  "theme_color": "#0b1230",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
