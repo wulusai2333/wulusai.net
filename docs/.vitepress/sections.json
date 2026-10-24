@@ -1,6 +1,20 @@
 {
   "sections": [
     {
+      "dir": "AI",
+      "icon": "🐳",
+      "text": "AI 与大模型",
+      "desc": "本地部署、MCP、RAG 与上下文工程",
+      "collapsed": false,
+      "order": [
+        "AI/index.md",
+        "AI/本地大模型怎么选.md",
+        "AI/MCP是什么.md",
+        "AI/RAG最小可用实现.md",
+        "AI/提示词与上下文工程.md"
+      ]
+    },
+    {
       "dir": "Java",
       "icon": "☕",
       "text": "Java",
@@ -103,9 +117,10 @@
       "dir": "NovelAIDiffusion",
       "icon": "🎨",
       "text": "AI 绘画",
-      "desc": "Stable Diffusion / NovelAI 调参记录",
+      "desc": "Stable Diffusion / NovelAI / ComfyUI 调参记录",
       "collapsed": false,
       "order": [
+        "NovelAIDiffusion/批量出图管线.md",
         "NovelAIDiffusion/近似NovelAI调整.md",
         "NovelAIDiffusion/训练自定义角色模型.md",
         "NovelAIDiffusion/tag的应用方法.md",
@@ -131,6 +146,11 @@
     }
   ],
   "titles": {
+    "AI/index.md": "从这里开始",
+    "AI/本地大模型怎么选.md": "本地大模型怎么选",
+    "AI/MCP是什么.md": "MCP 是什么",
+    "AI/RAG最小可用实现.md": "RAG 最小可用实现",
+    "AI/提示词与上下文工程.md": "提示词与上下文工程",
     "C/C.md": "安装编译环境",
     "DataBase/mysql.md": "MySQL（Windows 安装）",
     "DataBase/postgresql.md": "PostgreSQL",
@@ -152,6 +172,7 @@
     "Linux/计算机网络.md": "计算机网络",
     "Linux/运维.md": "运维速查",
     "NovelAIDiffusion/tag的应用方法.md": "Tag 的应用方法",
+    "NovelAIDiffusion/批量出图管线.md": "批量出图管线：清场、换角、打光",
     "NovelAIDiffusion/修复有瑕疵的输出.md": "修复有瑕疵的输出",
     "NovelAIDiffusion/训练自定义角色模型.md": "训练自定义角色模型",
     "NovelAIDiffusion/近似NovelAI调整.md": "近似 NovelAI 调整",
