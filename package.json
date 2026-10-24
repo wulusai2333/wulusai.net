@@ -6,9 +6,9 @@
   "description": "呜路塞的知识库 · 基于 VitePress 的个人知识站点",
   "packageManager": "pnpm@11.21.0",
   "scripts": {
-    "gen": "node scripts/gen-recent.mjs",
-    "dev": "node scripts/gen-recent.mjs && vitepress dev docs",
-    "build": "node scripts/gen-recent.mjs && vitepress build docs",
+    "gen": "node scripts/gen-recent.mjs && node scripts/gen-ai-meta.mjs",
+    "dev": "node scripts/gen-recent.mjs && node scripts/gen-ai-meta.mjs && vitepress dev docs",
+    "build": "node scripts/gen-recent.mjs && node scripts/gen-ai-meta.mjs && vitepress build docs",
     "preview": "vitepress preview docs"
   },
   "devDependencies": {

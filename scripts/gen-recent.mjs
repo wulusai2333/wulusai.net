@@ -27,13 +27,16 @@ const { sections: SECTIONS, titles: TITLES } = JSON.parse(
 
 const RECENT_LIMIT = 6
 
-/** 递归收集 markdown，跳过 en 与隐藏目录 */
+/** 递归收集 markdown，跳过 en、public 与隐藏目录 */
 function walk(dir, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith('.') || entry.name === 'node_modules') continue
     const full = path.join(dir, entry.name)
     if (entry.isDirectory()) {
-      if (full === path.join(DOCS_ROOT, 'en')) continue
+      // en 是英文占位目录；public 是静态资源目录，
+      // 里面可能有 gen-ai-meta.mjs 生成的 Markdown 镜像 —— 那是正文的副本，
+      // 一旦被当成文章统计，篇数会翻倍、最近更新里会混进「index」这种假条目。
+      if (entry.name === 'en' || entry.name === 'public') continue
       walk(full, out)
     } else if (entry.isFile() && entry.name.endsWith('.md')) {
       out.push(full)
@@ -46,8 +49,9 @@ function rel(abs) {
   return path.relative(DOCS_ROOT, abs).split(path.sep).join('/')
 }
 
+/** index.md 对应目录本身，其余对应 `<名字>.html`（GitHub Pages 会补 .html 后缀） */
 function toLink(relative) {
-  return '/' + relative.replace(/\.md$/, '')
+  return '/' + relative.replace(/\.md$/, '').replace(/(^|\/)index$/, '$1')
 }
 
 /** 读取一级标题，跳过 frontmatter 与代码块 */
@@ -137,6 +141,7 @@ const sectionCards = SECTIONS.map((section) => {
   const owned = entries.filter((e) => e.relative.startsWith(prefix))
   const first = (section.order ?? []).map((p) => owned.find((e) => e.relative === p)).find(Boolean) ?? owned[0]
   return {
+    dir: section.dir,
     icon: section.icon,
     text: section.text,
     desc: section.desc,
@@ -166,12 +171,33 @@ const recent = entries
     }
   })
 
+/**
+ * 每篇文章的元数据，供文章页头图区（ArticleHead.vue）使用：
+ *   · date    —— Git 最近提交日期（拿不到时用文件修改时间）
+ *   · chars   —— 去空白后的字数
+ *   · minutes —— 预计阅读分钟数（中文按 400 字/分钟，向上取整，最少 1 分钟）
+ *
+ * 只统计分类目录里的文章；index.md / about.md 这类站点页面不进 map，
+ * 文章页读不到时自行降级为不显示日期与时长。
+ */
+const docs = Object.fromEntries(
+  entries.map((e) => [
+    e.relative,
+    {
+      date: new Date(e.date).toISOString().slice(0, 10),
+      chars: e.chars,
+      minutes: Math.max(1, Math.ceil(e.chars / 400))
+    }
+  ])
+)
+
 const payload = {
   generatedAt: new Date().toISOString(),
   totalDocs: entries.length,
   totalChars: entries.reduce((sum, e) => sum + e.chars, 0),
   sections: sectionCards,
-  recent
+  recent,
+  docs
 }
 
 fs.mkdirSync(path.dirname(OUT_FILE), { recursive: true })
