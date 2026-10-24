@@ -1,0 +1,695 @@
+/* ============================================================================
+   文章页 · 编辑型版式（Article page, editorial）
+   ----------------------------------------------------------------------------
+   只负责「阅读这一层」：头图区 + 正文排版。首页版式在 home.css，全局皮肤在 custom.css。
+   设计目标：像翻一本图录 —— 一张封面、一个编号、一段正文、克制的分隔线。
+   ========================================================================== */
+
+.VPDoc {
+  --wl-serif: 'Noto Serif SC Display', 'Songti SC', 'Noto Serif CJK SC', 'Source Han Serif SC',
+    'STSong', serif;
+
+  --wl-page-line: var(--vp-c-divider);
+  --wl-gold: #e8c98f;
+  --wl-ink: var(--vp-c-text-1);
+  --wl-muted: var(--vp-c-text-2);
+}
+
+html:not(.dark) .VPDoc {
+  --wl-gold: #9a6a3a;
+}
+
+/* ---------------------------------------------------------------------------
+   1. 头图区
+   ------------------------------------------------------------------------ */
+.wl-doc-head {
+  margin: -32px -24px 36px;
+}
+
+@media (min-width: 768px) {
+  .wl-doc-head {
+    margin: -48px -32px 44px;
+  }
+}
+
+.wl-doc-head__cover {
+  position: relative;
+  height: clamp(220px, 30vw, 400px);
+  margin: 0;
+  overflow: hidden;
+  background: var(--vp-c-bg-soft);
+}
+
+.wl-doc-head__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center 42%;
+  filter: saturate(0.95);
+}
+
+.wl-doc-head__cover img:hover {
+  box-shadow: none;
+}
+
+/* 图片底部融进页面底色，避免出现一条生硬的边 */
+.wl-doc-head__veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(4, 7, 18, 0.34) 0%,
+      rgba(4, 7, 18, 0.04) 34%,
+      rgba(4, 7, 18, 0.1) 62%,
+      color-mix(in srgb, var(--vp-c-bg) 94%, transparent) 100%
+    ),
+    linear-gradient(90deg, rgba(4, 7, 18, 0.42) 0%, transparent 58%);
+}
+
+.wl-doc-head__plate {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: rgba(238, 244, 255, 0.78);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+}
+
+.wl-doc-head__plate b {
+  font-weight: 500;
+  color: var(--wl-gold);
+}
+
+@media (min-width: 768px) {
+  .wl-doc-head__plate {
+    left: 32px;
+    right: 32px;
+  }
+}
+
+/* 正文栏的位置由 ArticleHead 挂载后量出来写进变量，标题与正文左边缘严格对齐；
+   量不到时（禁 JS）退回 32px 的内边距，也不会破坏版式。 */
+.wl-doc-head__body {
+  padding: 26px 24px 0;
+}
+
+@media (min-width: 768px) {
+  .wl-doc-head__body {
+    padding: 34px 32px 0;
+  }
+}
+
+@media (min-width: 960px) {
+  .wl-doc-head__body {
+    max-width: var(--wl-doc-width, 688px);
+    margin-left: var(--wl-doc-inset, 32px);
+    margin-right: auto;
+    padding: 34px 0 0;
+  }
+}
+
+.wl-doc-head.is-plain {
+  margin-top: 0;
+}
+
+.wl-doc-head__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 18px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--wl-muted);
+}
+
+.wl-doc-head__eyebrow > span:first-child::before {
+  content: '';
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+  margin-right: 12px;
+  background: var(--wl-gold);
+  vertical-align: middle;
+}
+
+.wl-doc-head__desc {
+  overflow: hidden;
+  padding-left: 16px;
+  border-left: 1px solid var(--wl-page-line);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.75;
+}
+
+.wl-doc-head__title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: var(--wl-serif);
+  font-size: clamp(2.1rem, 4.4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
+  color: var(--wl-ink);
+}
+
+.wl-doc-head__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin: 20px 0 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--vp-c-text-3);
+}
+
+.wl-doc-head__icon {
+  font-size: 0.9rem;
+  filter: grayscale(0.2);
+}
+
+.wl-doc-head__meta-rule {
+  width: 22px;
+  height: 1px;
+  background: var(--wl-page-line);
+}
+
+/* 正文里手写的 `# 标题` 与头图区重复，统一隐藏（标题只由 ArticleHead 渲染）。
+   VitePress 1.6 的 `.vp-doc` 里还包了一层 `<div>`，两种结构都覆盖到。 */
+.VPDoc .vp-doc > h1:first-child,
+.VPDoc .vp-doc > div > h1:first-child {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   2. 正文排版
+   ------------------------------------------------------------------------ */
+.VPDoc .vp-doc {
+  font-size: 15.5px;
+  line-height: 2.02;
+}
+
+.VPDoc .vp-doc p {
+  margin: 1.1em 0;
+  line-height: 2.02;
+}
+
+/* 开篇第一段略微放大，像图录的导语 */
+.VPDoc .vp-doc > p:first-of-type,
+.VPDoc .vp-doc > div > p:first-of-type {
+  font-size: 1.02rem;
+  color: var(--vp-c-text-1);
+}
+
+.VPDoc .vp-doc h2 {
+  margin-top: 3.2rem;
+  margin-bottom: 1.1rem;
+  padding-top: 1.9rem;
+  border-top: 1px solid var(--wl-page-line);
+  font-family: var(--wl-serif);
+  font-size: 1.62rem;
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -0.015em;
+}
+
+.VPDoc .vp-doc h3 {
+  margin-top: 2.2rem;
+  margin-bottom: 0.8rem;
+  font-family: var(--wl-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.VPDoc .vp-doc h4 {
+  font-family: var(--wl-serif);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* 老笔记的 h2/h3 首元素不要多余分隔线（custom.css 的同类规则没覆盖到
+   VitePress 1.6 的 `.vp-doc > div` 这层包裹，这里补齐） */
+.VPDoc .vp-doc > h2:first-child,
+.VPDoc .vp-doc > div > h2:first-child,
+.VPDoc .vp-doc > div > h3:first-child,
+.VPDoc .vp-doc > div > h4:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.VPDoc .vp-doc ul,
+.VPDoc .vp-doc ol {
+  line-height: 1.95;
+}
+
+.VPDoc .vp-doc li + li {
+  margin-top: 0.3em;
+}
+
+.VPDoc .vp-doc strong {
+  font-weight: 650;
+  color: var(--vp-c-text-1);
+}
+
+/* 引用：图录里的引文，用衬线 + 暖金细线 */
+.VPDoc .vp-doc blockquote {
+  margin: 1.8rem 0;
+  padding: 4px 0 4px 22px;
+  border-left: 2px solid var(--wl-gold);
+  border-image: none;
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--wl-serif);
+  font-size: 1.04rem;
+  line-height: 1.95;
+  color: var(--vp-c-text-2);
+}
+
+.VPDoc .vp-doc blockquote > p {
+  margin: 0.5em 0;
+}
+
+/* 表格：去掉浮夸阴影，改细线 + 纸感 */
+.VPDoc .vp-doc table {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 0.9rem;
+}
+
+.VPDoc .vp-doc th {
+  font-weight: 600;
+  font-family: var(--wl-serif);
+}
+
+/* 图片：与正文同宽，留呼吸 */
+.VPDoc .vp-doc img {
+  border-radius: 2px;
+}
+
+.VPDoc .vp-doc code {
+  font-variant-ligatures: none;
+}
+
+/* 提示块：左侧一道暖金/品牌色，弱化圆角 */
+.VPDoc .vp-doc .custom-block {
+  margin: 1.7rem 0;
+  padding: 14px 20px;
+  border-radius: 2px;
+  border-left-width: 2px;
+  border-left-style: solid;
+}
+
+.VPDoc .vp-doc .custom-block.tip {
+  border-left-color: var(--vp-c-brand-2);
+  background: color-mix(in srgb, var(--vp-c-brand-2) 7%, var(--vp-c-bg));
+}
+
+.VPDoc .vp-doc .custom-block.warning {
+  border-left-color: #d8a44a;
+}
+
+.VPDoc .vp-doc .custom-block.danger {
+  border-left-color: #d06b6b;
+}
+
+.VPDoc .vp-doc .custom-block-title {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* 分隔线：短一点、轻一点 */
+.VPDoc .vp-doc hr {
+  margin: 2.6rem 0;
+  border: 0;
+  border-top: 1px solid var(--wl-page-line);
+  width: 96px;
+}
+
+/* ---------------------------------------------------------------------------
+   3. 关于页（手记式）
+   ------------------------------------------------------------------------ */
+.wl-about .vp-doc {
+  max-width: 720px;
+}
+
+.wl-about .vp-doc > div > p:first-of-type::first-letter {
+  float: left;
+  margin: 0.12em 0.12em 0 0;
+  font-family: var(--wl-serif);
+  font-size: 3.3em;
+  font-weight: 600;
+  line-height: 0.88;
+  color: var(--wl-gold);
+}
+
+.wl-about .vp-doc h2 {
+  border-top: 0;
+  padding-top: 0;
+  font-size: 1.34rem;
+  letter-spacing: 0.01em;
+}
+
+.wl-about .vp-doc h2::before {
+  content: '';
+  display: block;
+  width: 34px;
+  height: 1px;
+  margin-bottom: 14px;
+  background: var(--wl-gold);
+}
+
+.wl-about .vp-doc table {
+  font-size: 0.86rem;
+  border-top: 1px solid var(--wl-page-line);
+  border-bottom: 1px solid var(--wl-page-line);
+}
+
+.wl-about .vp-doc tr {
+  background: transparent;
+}
+
+.wl-about .vp-doc th {
+  background: transparent;
+  color: var(--vp-c-text-2);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------------
+   4. 404
+   ------------------------------------------------------------------------ */
+.wl-404 {
+  display: grid;
+  gap: 34px;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 8px 0 40px;
+}
+
+.wl-404__art {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--vp-c-bg-soft);
+}
+
+.wl-404__art img {
+  display: block;
+  width: 100%;
+  height: clamp(220px, 32vw, 360px);
+  border: 0;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center 42%;
+  filter: saturate(0.9);
+}
+
+.wl-404__art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 7, 18, 0.16) 0%,
+    transparent 42%,
+    color-mix(in srgb, var(--vp-c-bg) 96%, transparent) 100%
+  );
+}
+
+.wl-404__art figcaption {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  z-index: 1;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: rgba(238, 244, 255, 0.72);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
+}
+
+.wl-404 .wl-404__body h1 {
+  margin: 14px 0 18px;
+  padding: 0;
+  border: 0;
+  font-family: var(--wl-serif);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: var(--wl-ink);
+}
+
+.wl-404__eyebrow {
+  margin: 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+}
+
+.wl-404__eyebrow span {
+  color: var(--wl-gold);
+}
+
+.wl-404__body > p:not(.wl-404__eyebrow) {
+  max-width: 38rem;
+  color: var(--vp-c-text-2);
+}
+
+.wl-404__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.wl-404__links a {
+  padding: 9px 16px;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  transition:
+    border-color 0.22s ease,
+    color 0.22s ease,
+    background 0.22s ease;
+}
+
+.wl-404__links a:hover {
+  border-color: var(--vp-c-brand-2);
+  color: var(--vp-c-brand-2);
+  background: color-mix(in srgb, var(--vp-c-brand-2) 8%, transparent);
+}
+
+/* ---------------------------------------------------------------------------
+   6. AI 娘档案页 · 暖纸展柜
+   ------------------------------------------------------------------------ */
+.wl-archive {
+  margin: 2.2rem 0 2.8rem;
+}
+
+/* 暖纸面板与正文同宽，像夹在图录里的一页纸 */
+.wl-archive__paper {
+  position: relative;
+  margin: 0;
+  padding: 34px 26px 30px;
+  overflow: hidden;
+  background: #f4f1e8;
+  color: #1a1e2b;
+}
+
+@media (min-width: 768px) {
+  .wl-archive__paper {
+    padding: 38px 34px 34px;
+  }
+}
+
+.wl-archive__paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image:
+    radial-gradient(rgba(80, 68, 45, 0.08) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.4), transparent 34%, rgba(180, 160, 120, 0.1));
+  background-size:
+    4px 4px,
+    100% 100%;
+}
+
+.wl-archive__inner {
+  position: relative;
+}
+
+.wl-archive__head {
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(30, 35, 50, 0.18);
+}
+
+.wl-archive__eyebrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 12px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7b6f5c;
+}
+
+.wl-archive__meta {
+  letter-spacing: 0.12em;
+  color: #9a8a6a;
+}
+
+.wl-archive__lede {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.9;
+  color: #5c606c;
+}
+
+.wl-archive__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 560px) {
+  .wl-archive__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (min-width: 1180px) {
+  .wl-archive__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.wl-archive__card {
+  position: relative;
+  margin: 0;
+  padding: 10px 10px 12px;
+  border: 1px solid rgba(30, 35, 50, 0.12);
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(40, 40, 30, 0.06);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+
+.wl-archive__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(40, 40, 30, 0.16);
+}
+
+.wl-archive__no {
+  position: absolute;
+  top: 6px;
+  right: 9px;
+  z-index: 1;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: #a4a49a;
+}
+
+.wl-archive__card figure {
+  margin: 0;
+}
+
+.wl-archive__card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border: 0;
+  border-radius: 0;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.wl-archive__card img:hover {
+  box-shadow: none;
+}
+
+.wl-archive__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 9px;
+}
+
+.wl-archive .wl-archive__text strong {
+  font-family: 'Noto Serif SC Display', 'Songti SC', 'Noto Serif CJK SC', 'Source Han Serif SC',
+    'STSong', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #171b27;
+}
+
+.wl-archive__text span {
+  font-size: 0.7rem;
+  color: #6b6f7c;
+}
+
+.wl-archive__text em {
+  font-style: normal;
+  font-size: 0.56rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9a8a6a;
+}
+
+@media (max-width: 620px) {
+  .wl-archive__paper {
+    padding: 26px 18px 22px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   7. 窄屏
+   ------------------------------------------------------------------------ */
+@media (max-width: 767px) {
+  .wl-doc-head__desc {
+    display: none;
+  }
+
+  .wl-doc-head__title {
+    font-size: clamp(1.9rem, 8.4vw, 2.6rem);
+  }
+
+  .vp-doc h2 {
+    margin-top: 2.6rem;
+    padding-top: 1.5rem;
+    font-size: 1.42rem;
+  }
+}

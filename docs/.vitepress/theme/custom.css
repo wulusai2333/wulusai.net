@@ -3,148 +3,221 @@
    ----------------------------------------------------------------------------
    只做「视觉增强」，不改任何结构；所有改动集中在变量与少量装饰性选择器里，
    升级 VitePress 时基本不会冲突。
+
+   视觉主题：深海星图（Deep-Sea Starfield）
+   ----------------------------------------------------------------------------
+   色板不是拍脑袋定的，是从站主收藏的主视觉图
+   （星空长笛少女，3840×2160）里直接采样出来的：
+     深海底  #131C46 / #192350      幽蓝  #5E65AA / #8787B4
+     淡紫    #A9A3CF / #C8B9D6      暖光  #CCB3B8      金  #E8C88A
+   配色原则来自同一批图的统计结论：暗部占 60~80%、只有少量高亮 →
+   天然适合深色主题，所以暗色是「主场」，浅色是「冷雾白雪」的副场。
    ========================================================================== */
 
 /* ---------------------------------------------------------------------------
    1. 设计令牌
    ------------------------------------------------------------------------ */
 :root {
-  /* 品牌色：蓝 → 青 → 紫，用于渐变标题、卡片描边、进度条 */
-  --wl-brand-1: #2f6df6;
-  --wl-brand-2: #17b0c8;
-  --wl-brand-3: #7c5cff;
-  --wl-gradient: linear-gradient(120deg, var(--wl-brand-1) 0%, var(--wl-brand-2) 55%, var(--wl-brand-3) 100%);
-  --wl-gradient-soft: linear-gradient(120deg, rgba(47, 109, 246, 0.12), rgba(23, 176, 200, 0.12), rgba(124, 92, 255, 0.12));
+  /* ---- 深海色阶（暗色主场） ---- */
+  --wl-ink-900: #070b1f;
+  --wl-ink-800: #0b1230;
+  --wl-ink-700: #131c46;
+  --wl-ink-600: #192350;
+  --wl-ink-500: #272c58;
+  --wl-blue-400: #5e65aa;
+  --wl-blue-300: #8787b4;
+  --wl-lilac-300: #a9a3cf;
+  --wl-lilac-200: #c8b9d6;
+  --wl-mist-100: #e6d9e8;
+  --wl-rose-300: #ccb3b8;
+  --wl-gold-300: #e8c88a;
+  --wl-cyan-300: #7fd8ff;
 
-  --wl-radius: 16px;
-  --wl-radius-sm: 10px;
-  --wl-shadow-1: 0 1px 2px rgba(15, 30, 60, 0.05), 0 4px 14px rgba(15, 30, 60, 0.06);
-  --wl-shadow-2: 0 10px 24px rgba(15, 30, 60, 0.1), 0 28px 56px rgba(15, 30, 60, 0.08);
-  --wl-ring: 0 0 0 4px rgba(47, 109, 246, 0.14);
+  /* ---- 品牌色：靛蓝 → 青 → 淡紫，与主视觉图的色相分布一致 ---- */
+  --wl-brand-1: #6b79f5;
+  --wl-brand-2: #7fd8ff;
+  --wl-brand-3: #c8a9f0;
+  --wl-gradient: linear-gradient(118deg, var(--wl-brand-1) 0%, var(--wl-brand-2) 52%, var(--wl-brand-3) 100%);
+  --wl-gradient-soft: linear-gradient(118deg, rgba(107, 121, 245, 0.16), rgba(127, 216, 255, 0.13), rgba(200, 169, 240, 0.14));
 
-  /* 覆盖 VitePress 主题变量 */
-  --vp-c-brand-1: #2f6df6;
-  --vp-c-brand-2: #2560e0;
-  --vp-c-brand-3: #1e4fc0;
-  --vp-c-brand-soft: rgba(47, 109, 246, 0.14);
+  /* ---- 玻璃质感 ---- */
+  --wl-glass: rgba(19, 28, 70, 0.56);
+  --wl-glass-strong: rgba(19, 28, 70, 0.82);
+  --wl-glass-blur: 18px;
+  /* 卡片描边：用「亮角 + 暗边」模拟受光，比纯色边框更有体积感 */
+  --wl-hairline: linear-gradient(150deg, rgba(180, 196, 255, 0.34), rgba(180, 196, 255, 0.06) 42%, rgba(180, 196, 255, 0.02) 70%, rgba(180, 196, 255, 0.14));
 
-  --vp-c-bg: #ffffff;
-  --vp-c-bg-alt: #f6f8fc;
-  --vp-c-bg-soft: #f6f8fc;
-  --vp-c-bg-elv: #ffffff;
-  --vp-c-divider: rgba(15, 30, 60, 0.09);
-  --vp-c-border: rgba(15, 30, 60, 0.12);
-  --vp-c-gutter: rgba(15, 30, 60, 0.09);
+  --wl-radius: 18px;
+  --wl-radius-sm: 12px;
+  --wl-shadow-1: 0 1px 2px rgba(3, 6, 20, 0.5), 0 6px 20px rgba(3, 6, 20, 0.34);
+  --wl-shadow-2: 0 12px 34px rgba(3, 6, 20, 0.55), 0 34px 70px rgba(3, 6, 20, 0.42);
+  --wl-glow-brand: 0 0 0 1px rgba(107, 121, 245, 0.4), 0 10px 34px rgba(107, 121, 245, 0.28);
+  --wl-ring: 0 0 0 4px rgba(107, 121, 245, 0.22);
+
+  /* ---- 皮肤开关（浅色模式在 .dark 之外单独赋值） ---- */
+
+  /* ---- 覆盖 VitePress 主题变量 ---- */
+  --vp-c-brand-1: #8b96ff;
+  --vp-c-brand-2: #6b79f5;
+  --vp-c-brand-3: #7fd8ff;
+  --vp-c-brand-soft: rgba(107, 121, 245, 0.18);
+
+  --vp-c-bg: var(--wl-ink-800);
+  --vp-c-bg-alt: var(--wl-ink-900);
+  --vp-c-bg-soft: #16204a;
+  --vp-c-bg-elv: var(--wl-ink-700);
+  --vp-c-divider: rgba(168, 186, 255, 0.13);
+  --vp-c-border: rgba(168, 186, 255, 0.2);
+  --vp-c-gutter: rgba(168, 186, 255, 0.1);
+
+  --vp-c-text-1: #e9edfb;
+  --vp-c-text-2: #b7bfdd;
+  --vp-c-text-3: #838cb2;
 
   --vp-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
     'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', 'Cascadia Code', 'SFMono-Regular', Consolas,
     'Liberation Mono', Menlo, monospace;
 
-  --vp-code-block-bg: #f7f9fd;
-  --vp-code-line-highlight-color: rgba(47, 109, 246, 0.1);
+  --vp-code-block-bg: rgba(9, 14, 38, 0.72);
+  --vp-code-line-highlight-color: rgba(127, 216, 255, 0.1);
 
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: var(--wl-gradient);
 
   --vp-button-brand-border: transparent;
+  --vp-button-brand-text: #08102a;
   --vp-button-brand-bg: var(--wl-brand-1);
   --vp-button-brand-hover-border: transparent;
-  --vp-button-brand-hover-bg: #2560e0;
-  --vp-button-brand-active-bg: #1e4fc0;
+  --vp-button-brand-hover-text: #08102a;
+  --vp-button-brand-hover-bg: #8b96ff;
+  --vp-button-brand-active-bg: #5a68e6;
 
-  --vp-local-search-highlight-bg: rgba(47, 109, 246, 0.18);
+  --vp-local-search-highlight-bg: rgba(127, 216, 255, 0.24);
 }
 
-.dark {
-  --vp-c-brand-1: #6f9dff;
-  --vp-c-brand-2: #5b8cff;
-  --vp-c-brand-3: #86aeff;
-  --vp-c-brand-soft: rgba(111, 157, 255, 0.16);
+/* 浅色模式：暖米白晨雾（2026-10-23 站主拍板，替代原来的冷雾白） */
+html:not(.dark) {
+  --wl-glass: rgba(255, 251, 243, 0.74);
+  --wl-glass-strong: rgba(255, 252, 246, 0.92);
+  --wl-hairline: linear-gradient(150deg, rgba(150, 122, 84, 0.22), rgba(150, 122, 84, 0.06) 45%, rgba(150, 122, 84, 0.02) 70%, rgba(150, 122, 84, 0.12));
 
-  --vp-c-bg: #0b1020;
-  --vp-c-bg-alt: #080c18;
-  --vp-c-bg-soft: #101728;
-  --vp-c-bg-elv: #101728;
-  --vp-c-divider: rgba(255, 255, 255, 0.09);
-  --vp-c-border: rgba(255, 255, 255, 0.13);
-  --vp-c-gutter: rgba(255, 255, 255, 0.07);
+  --wl-shadow-1: 0 1px 2px rgba(72, 54, 32, 0.06), 0 6px 18px rgba(72, 54, 32, 0.07);
+  --wl-shadow-2: 0 14px 34px rgba(72, 54, 32, 0.12), 0 30px 64px rgba(72, 54, 32, 0.09);
+  --wl-glow-brand: 0 0 0 1px rgba(74, 85, 214, 0.28), 0 10px 26px rgba(74, 85, 214, 0.16);
+  --wl-ring: 0 0 0 4px rgba(74, 85, 214, 0.16);
 
-  --vp-code-block-bg: rgba(255, 255, 255, 0.04);
-  --vp-code-line-highlight-color: rgba(111, 157, 255, 0.12);
+  /* 浅色模式下渐变必须整体压深：原来的亮靛蓝/青在白底上对比度不足，
+     首页大标题会「白到看不见」。这里换成同色相的深版本。 */
+  --wl-gradient: linear-gradient(118deg, #2f38a8 0%, #0d5a70 52%, #63399f 100%);
 
-  --wl-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.32);
-  --wl-shadow-2: 0 10px 28px rgba(0, 0, 0, 0.48), 0 30px 60px rgba(0, 0, 0, 0.4);
-  --wl-ring: 0 0 0 4px rgba(111, 157, 255, 0.18);
+  --vp-c-brand-1: #4a55d6;
+  --vp-c-brand-2: #3b45bd;
+  --vp-c-brand-3: #1c7fa8;
+  --vp-c-brand-soft: rgba(74, 85, 214, 0.12);
+
+  --vp-c-bg: #fbf7ef;
+  --vp-c-bg-alt: #f4eee2;
+  --vp-c-bg-soft: #f6f0e4;
+  --vp-c-bg-elv: #fffcf5;
+  --vp-c-divider: rgba(92, 74, 48, 0.12);
+  --vp-c-border: rgba(92, 74, 48, 0.16);
+  --vp-c-gutter: rgba(92, 74, 48, 0.08);
+
+  --vp-c-text-1: #241d14;
+  --vp-c-text-2: #4b4034;
+  --vp-c-text-3: #7a6c5b;
+
+  --vp-code-block-bg: #f7f1e4;
+  --vp-code-line-highlight-color: rgba(74, 85, 214, 0.09);
+
+  --vp-button-brand-text: #ffffff;
+  --vp-button-brand-hover-text: #ffffff;
+  --vp-button-brand-bg: var(--vp-c-brand-1);
+  --vp-button-brand-hover-bg: #3b45bd;
+  --vp-button-brand-active-bg: #333ca8;
+
+  --vp-local-search-highlight-bg: rgba(127, 216, 255, 0.3);
 }
 
 /* ---------------------------------------------------------------------------
-   2. 全局质感
+   2. 全局质感与背景
    ------------------------------------------------------------------------ */
 html {
   scroll-behavior: smooth;
+  /* 移动端地址栏收起时不要跳高度 */
+  scrollbar-gutter: stable;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* 深海底色 + 三层极光斑，纯 CSS 实现，不额外请求图片 */
+  background-color: var(--wl-ink-900);
+  background-image:
+    radial-gradient(52% 42% at 12% -6%, rgba(107, 121, 245, 0.24), transparent 66%),
+    radial-gradient(46% 38% at 88% 4%, rgba(127, 216, 255, 0.16), transparent 68%),
+    radial-gradient(60% 46% at 50% 108%, rgba(200, 169, 240, 0.14), transparent 70%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+html:not(.dark) body {
+  background-color: #fbf7ef;
+  background-image:
+    radial-gradient(52% 42% at 10% -8%, rgba(232, 200, 138, 0.22), transparent 66%),
+    radial-gradient(46% 38% at 90% 2%, rgba(204, 179, 184, 0.18), transparent 68%),
+    radial-gradient(60% 46% at 50% 106%, rgba(127, 216, 255, 0.1), transparent 72%);
+}
+
+/* 全局噪点：一层 3KB 的 SVG 湍流，压掉大面积渐变的「塑料味」 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 ::selection {
-  background: rgba(47, 109, 246, 0.22);
+  background: rgba(127, 216, 255, 0.28);
+  color: var(--vp-c-text-1);
 }
 
-/* 细腻的滚动条（不影响功能） */
+/* 键盘可达性：只在键盘导航时显示焦点环 */
+:focus-visible {
+  outline: 2px solid var(--wl-brand-2);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 细腻的滚动条 */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(120, 140, 175, 0.45) transparent;
+  scrollbar-color: rgba(140, 160, 220, 0.45) transparent;
 }
 *::-webkit-scrollbar {
   width: 9px;
   height: 9px;
 }
 *::-webkit-scrollbar-thumb {
-  background: rgba(120, 140, 175, 0.4);
+  background: rgba(140, 160, 220, 0.4);
   border: 2px solid transparent;
   background-clip: content-box;
   border-radius: 8px;
 }
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 125, 170, 0.65);
+  background: rgba(127, 216, 255, 0.55);
   background-clip: content-box;
 }
 
 /* ---------------------------------------------------------------------------
-   3. 首页 Hero
+   3. 动画关键帧
    ------------------------------------------------------------------------ */
-.VPHome {
-  position: relative;
-}
-
-/* 顶部环境光：两团缓慢浮动的色斑，营造层次感 */
-.VPHome::before {
-  content: '';
-  position: absolute;
-  inset: -80px 0 auto 0;
-  height: 620px;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(38% 48% at 18% 22%, rgba(47, 109, 246, 0.22), transparent 70%),
-    radial-gradient(34% 44% at 82% 12%, rgba(124, 92, 255, 0.18), transparent 70%),
-    radial-gradient(40% 40% at 55% 42%, rgba(23, 176, 200, 0.16), transparent 72%);
-  filter: blur(12px);
-  animation: wl-float 18s ease-in-out infinite alternate;
-}
-
-.dark .VPHome::before {
-  background:
-    radial-gradient(38% 48% at 18% 22%, rgba(47, 109, 246, 0.3), transparent 70%),
-    radial-gradient(34% 44% at 82% 12%, rgba(124, 92, 255, 0.26), transparent 70%),
-    radial-gradient(40% 40% at 55% 42%, rgba(23, 176, 200, 0.2), transparent 72%);
-}
-
 @keyframes wl-float {
   from {
     transform: translate3d(0, 0, 0) scale(1);
@@ -154,42 +227,18 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .VPHome::before {
-    animation: none;
+@keyframes wl-drift {
+  0% {
+    background-position: 0% 50%;
   }
-  html {
-    scroll-behavior: auto;
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
-.VPHome .VPHomeHero {
-  position: relative;
-  z-index: 1;
-}
-
-/* 头像：渐变光环 + 轻微浮动 */
-.VPHomeHero .VPImage.image-src {
-  border-radius: 50%;
-  border: 3px solid transparent;
-  background:
-    linear-gradient(var(--vp-c-bg), var(--vp-c-bg)) padding-box,
-    var(--wl-gradient) border-box;
-  box-shadow: var(--wl-shadow-2);
-  animation: wl-bob 6s ease-in-out infinite;
-}
-
-.VPHomeHero .image-bg {
-  background-image: var(--wl-gradient) !important;
-  filter: blur(52px);
-  opacity: 0.55;
-}
-
-/*
- * 注意：VitePress 自己用 transform: translate(-50%, -50%) 让头像在容器里居中，
- * 所以这里的 keyframes 必须把这段位移一起写进去，
- * 否则动画会覆盖掉居中变换，头像会向右下各偏移半个身位、压住标题。
- */
 @keyframes wl-bob {
   0%,
   100% {
@@ -200,59 +249,325 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .VPHomeHero .VPImage.image-src {
-    animation: none;
+@keyframes wl-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-/* 标题下的小字更松弛一点 */
-.VPHomeHero .tagline {
-  line-height: 1.75;
-  max-width: 34rem;
-  margin-inline: auto;
+@keyframes wl-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
 }
 
-.VPHomeHero .actions .VPButton.brand {
-  box-shadow: 0 8px 20px rgba(47, 109, 246, 0.28);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+@keyframes wl-swim {
+  0%,
+  100% {
+    transform: translateY(-1px) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(1.5px) rotate(3deg);
+  }
 }
 
-.VPHomeHero .actions .VPButton.brand:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(47, 109, 246, 0.36);
+@keyframes wl-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ---------------------------------------------------------------------------
-   4. 首页：内建 Features 卡片
+   4. 导航栏
    ------------------------------------------------------------------------ */
-.VPHomeFeatures {
+.VPNav .VPNavBar {
+  backdrop-filter: saturate(180%) blur(16px);
+  background-color: color-mix(in srgb, var(--wl-ink-900) 72%, transparent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+html:not(.dark) .VPNav .VPNavBar {
+  background-color: color-mix(in srgb, #fbf7ef 78%, transparent);
+}
+
+.VPNav.has-scrolled .VPNavBar {
+  border-bottom-color: var(--vp-c-divider);
+  box-shadow: 0 8px 28px rgba(3, 6, 20, 0.24);
+}
+
+.VPNavBarTitle .title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* 站徽：悬停时轻微发光 + 呼吸光晕 */
+.VPNavBarTitle .logo {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.VPNavBarTitle:hover .logo {
+  transform: rotate(-6deg) scale(1.06);
+  filter: drop-shadow(0 0 8px rgba(127, 216, 255, 0.55));
+}
+
+/* 导航链接：底部扫光 */
+.VPNavBarMenuLink {
+  position: relative;
+}
+.VPNavBarMenuLink::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--wl-gradient);
+  opacity: 0;
+  transition: left 0.28s ease, right 0.28s ease, opacity 0.28s ease;
+}
+.VPNavBarMenuLink:hover::after {
+  left: 14px;
+  right: 14px;
+  opacity: 1;
+}
+.VPNavBarMenuLink.active::after {
+  left: 14px;
+  right: 14px;
+  opacity: 1;
+}
+
+/* 搜索按钮：玻璃化 */
+.VPNavBarSearch .DocSearch-Button {
+  border-radius: 999px !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  background: color-mix(in srgb, var(--vp-c-bg-elv) 60%, transparent) !important;
+}
+.VPNavBarSearch .DocSearch-Button:hover {
+  border-color: color-mix(in srgb, var(--wl-brand-2) 55%, transparent) !important;
+  box-shadow: 0 0 0 4px rgba(127, 216, 255, 0.12);
+}
+
+/* ---------------------------------------------------------------------------
+   5. 侧边栏
+   ------------------------------------------------------------------------ */
+.VPSidebar {
+  /* 侧栏比正文更暗一档，拉开层次 */
+  background: color-mix(in srgb, var(--wl-ink-900) 66%, transparent) !important;
+  backdrop-filter: blur(12px);
+}
+
+html:not(.dark) .VPSidebar {
+  background: color-mix(in srgb, #fbf7ef 72%, transparent) !important;
+}
+
+.VPSidebarItem.level-0 > .item > .text {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.VPSidebarItem.level-0 {
+  padding-bottom: 12px;
+}
+
+.VPSidebarItem.is-active > .item .link .text,
+.VPSidebarItem.is-active > .item .text {
+  color: var(--vp-c-brand-1) !important;
+  font-weight: 600;
+}
+
+.VPSidebarItem.level-1.is-active {
+  position: relative;
+}
+
+.VPSidebarItem.level-1.is-active::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--wl-gradient);
+  box-shadow: 0 0 12px rgba(127, 216, 255, 0.7);
+}
+
+.VPSidebarItem.level-1.is-active::after {
+  content: '';
+  position: absolute;
+  inset: 2px 2px 2px -6px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(107, 121, 245, 0.16), transparent 72%);
+  pointer-events: none;
+}
+
+.VPSidebarItem.level-1 .link:hover .text {
+  color: var(--vp-c-brand-1);
+  transform: translateX(2px);
+}
+
+.VPSidebarItem .text {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* ---------------------------------------------------------------------------
+   6. 首页 Hero
+   ------------------------------------------------------------------------ */
+.VPHome {
+  position: relative;
+  isolation: isolate;
+}
+
+/* 6.1 极光斑：在实景图之外再叠一层缓慢浮动的色光 */
+.VPHome::before {
+  content: '';
+  position: absolute;
+  inset: -80px 0 auto 0;
+  height: 660px;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(38% 48% at 16% 20%, rgba(107, 121, 245, 0.32), transparent 70%),
+    radial-gradient(34% 44% at 84% 10%, rgba(127, 216, 255, 0.22), transparent 70%),
+    radial-gradient(40% 40% at 52% 44%, rgba(200, 169, 240, 0.2), transparent 72%);
+  filter: blur(14px);
+  animation: wl-float 20s ease-in-out infinite alternate;
+}
+/* 星野画布（StarField.vue）浮在实景图之上、文字之下 */
+.wl-starfield {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 760px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.VPHome .VPHomeHero,
+.VPHome .VPHomeFeatures,
+.VPHome .wl-categories,
+.VPHome .wl-recent {
   position: relative;
   z-index: 1;
 }
 
+/* 6.3 标题：渐变流动 */
+.VPHomeHero .name {
+  background-size: 220% 100%;
+  animation: wl-drift 14s ease-in-out infinite;
+  filter: drop-shadow(0 6px 30px rgba(107, 121, 245, 0.35));
+}
+
+.VPHomeHero .text {
+  font-size: clamp(1.6rem, 4.4vw, 2.6rem);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+}
+
+.VPHomeHero .tagline {
+  line-height: 1.8;
+  max-width: 36rem;
+  color: var(--vp-c-text-2);
+}
+
+/* 6.4 头像：旋转光环 + 呼吸 */
+.VPHomeHero .VPImage.image-src {
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background:
+    linear-gradient(var(--vp-c-bg), var(--vp-c-bg)) padding-box,
+    var(--wl-gradient) border-box;
+  box-shadow: var(--wl-shadow-2), 0 0 60px rgba(127, 216, 255, 0.28);
+  animation: wl-bob 6s ease-in-out infinite;
+  position: relative;
+}
+
+.VPHomeHero .image-bg {
+  background-image: var(--wl-gradient) !important;
+  filter: blur(56px);
+  opacity: 0.6;
+  animation: wl-pulse 7s ease-in-out infinite;
+}
+
+/* 注意：VitePress 自己用 transform: translate(-50%, -50%) 让头像在容器里居中，
+   所以这里的 keyframes 必须把这段位移一起写进去，
+   否则动画会覆盖掉居中变换，头像会向右下各偏移半个身位、压住标题。 */
+@media (prefers-reduced-motion: reduce) {
+  .VPHomeHero .VPImage.image-src {
+    animation: none;
+  }
+  .VPHomeHero .image-bg {
+    animation: none;
+  }
+}
+
+/* 6.5 按钮 */
+.VPHomeHero .actions .VPButton {
+  border-radius: 999px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.VPHomeHero .actions .VPButton.brand {
+  box-shadow: 0 10px 26px rgba(107, 121, 245, 0.34);
+  font-weight: 600;
+}
+
+.VPHomeHero .actions .VPButton.brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(107, 121, 245, 0.46), 0 0 0 4px rgba(127, 216, 255, 0.14);
+}
+
+.VPHomeHero .actions .VPButton.alt {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--wl-glass), var(--wl-glass)) padding-box,
+    var(--wl-hairline) border-box;
+  backdrop-filter: blur(10px);
+}
+
+.VPHomeHero .actions .VPButton.alt:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--wl-brand-2) 45%, transparent);
+}
+
+/* ---------------------------------------------------------------------------
+   7. 首页 Features 卡片
+   ------------------------------------------------------------------------ */
 .VPFeature {
   border-radius: var(--wl-radius) !important;
-  border: 1px solid var(--vp-c-divider) !important;
-  background: var(--vp-c-bg) !important;
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(var(--wl-glass), var(--wl-glass)) padding-box,
+    var(--wl-hairline) border-box !important;
+  backdrop-filter: blur(var(--wl-glass-blur));
   box-shadow: var(--wl-shadow-1);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
 }
 
 .VPFeature:hover {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--vp-c-brand-1) 45%, transparent) !important;
-  box-shadow: var(--wl-shadow-2);
+  transform: translateY(-6px);
+  box-shadow: var(--wl-shadow-2), 0 0 0 1px rgba(127, 216, 255, 0.24);
 }
 
 .VPFeature .icon {
   background: var(--wl-gradient-soft) !important;
   border-radius: var(--wl-radius-sm) !important;
-  transition: transform 0.25s ease;
+  transition: transform 0.3s ease;
 }
 
 .VPFeature:hover .icon {
-  transform: scale(1.08) rotate(-3deg);
+  transform: scale(1.1) rotate(-4deg);
 }
 
 .VPFeature .title {
@@ -261,47 +576,66 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
-   5. 首页：知识分类卡片（HomeCategories.vue）
+   8. 首页：知识分类卡片（HomeCategories.vue）
    ------------------------------------------------------------------------ */
 .wl-categories,
 .wl-recent {
-  position: relative;
-  z-index: 1;
   max-width: 1104px;
   margin: 0 auto;
 }
 
 .wl-categories {
-  margin-top: 72px;
+  margin-top: 84px;
 }
 
 .wl-recent {
-  margin-top: 64px;
+  margin-top: 72px;
 }
 
 .wl-section-head {
-  margin-bottom: 22px;
+  position: relative;
+  margin-bottom: 24px;
 }
 
 .wl-section-head h2 {
+  /* 用 flex 行内放「小鲸鱼 + 标题」，下划线单独绝对定位，
+     这样标题文字换行时线也不会跟着跑偏 */
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin: 0;
+  padding-bottom: 18px;
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
+/* 小鲸鱼标记：把品牌符号用在章节标题上 */
+.wl-section-head h2::before {
+  content: '';
+  flex: none;
+  width: 26px;
+  height: 26px;
+  background: var(--wl-gradient);
+  -webkit-mask: url('/whale.svg') center / contain no-repeat;
+  mask: url('/whale.svg') center / contain no-repeat;
+}
+
 .wl-section-head h2::after {
   content: '';
-  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 46px;
   height: 4px;
-  margin-top: 10px;
   border-radius: 4px;
   background: var(--wl-gradient);
+  box-shadow: 0 0 12px rgba(127, 216, 255, 0.5);
 }
 
 .wl-section-head p {
-  margin: 10px 0 0;
+  margin: 6px 0 0;
   color: var(--vp-c-text-2);
   font-size: 0.92rem;
 }
@@ -319,13 +653,38 @@ body {
   align-items: flex-start;
   gap: 14px;
   padding: 20px 18px;
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid transparent;
   border-radius: var(--wl-radius);
-  background: var(--vp-c-bg);
+  background:
+    linear-gradient(var(--wl-glass), var(--wl-glass)) padding-box,
+    var(--wl-hairline) border-box;
+  backdrop-filter: blur(var(--wl-glass-blur));
   box-shadow: var(--wl-shadow-1);
   overflow: hidden;
   text-decoration: none !important;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+
+/* 跟随鼠标的高光（坐标由 theme/effects.ts 写入 --wl-mx/--wl-my） */
+.wl-card::before,
+.VPFeature::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    220px circle at var(--wl-mx, 50%) var(--wl-my, 50%),
+    rgba(127, 216, 255, 0.16),
+    transparent 68%
+  );
+  transition: opacity 0.32s ease;
+}
+
+.wl-card:hover::before,
+.VPFeature:hover::before {
+  opacity: 1;
 }
 
 /* 卡片里缓慢游走的柔光 */
@@ -338,18 +697,17 @@ body {
   background: var(--wl-gradient);
   opacity: 0;
   filter: blur(46px);
-  transition: opacity 0.35s ease;
+  transition: opacity 0.4s ease;
   pointer-events: none;
 }
 
 .wl-card:hover {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--vp-c-brand-1) 42%, transparent);
-  box-shadow: var(--wl-shadow-2);
+  transform: translateY(-6px);
+  box-shadow: var(--wl-shadow-2), 0 0 0 1px rgba(127, 216, 255, 0.22);
 }
 
 .wl-card:hover .wl-card__glow {
-  opacity: 0.28;
+  opacity: 0.34;
 }
 
 .wl-card__icon {
@@ -362,11 +720,12 @@ body {
   line-height: 1;
   border-radius: 13px;
   background: var(--wl-gradient-soft);
-  transition: transform 0.25s ease;
+  box-shadow: inset 0 0 0 1px rgba(168, 186, 255, 0.16);
+  transition: transform 0.3s ease;
 }
 
 .wl-card:hover .wl-card__icon {
-  transform: scale(1.08) rotate(-4deg);
+  transform: scale(1.1) rotate(-5deg);
 }
 
 .wl-card__body {
@@ -393,6 +752,7 @@ body {
   border-radius: 999px;
   color: var(--vp-c-brand-1);
   background: var(--vp-c-brand-soft);
+  border: 1px solid rgba(127, 216, 255, 0.18);
 }
 
 .wl-card__desc {
@@ -407,25 +767,28 @@ body {
   color: var(--vp-c-text-3);
   opacity: 0;
   transform: translateX(-6px);
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
 }
 
 .wl-card:hover .wl-card__arrow {
   opacity: 1;
   transform: translateX(0);
-  color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-2);
 }
 
 /* ---------------------------------------------------------------------------
-   6. 首页：最近更新列表（RecentUpdates.vue）
+   9. 首页：最近更新列表（RecentUpdates.vue）
    ------------------------------------------------------------------------ */
 .wl-recent__list {
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid transparent;
   border-radius: var(--wl-radius);
-  background: var(--vp-c-bg);
+  background:
+    linear-gradient(var(--wl-glass), var(--wl-glass)) padding-box,
+    var(--wl-hairline) border-box;
+  backdrop-filter: blur(var(--wl-glass-blur));
   box-shadow: var(--wl-shadow-1);
   overflow: hidden;
 }
@@ -442,12 +805,12 @@ body {
   /* 关键：flex 项默认 min-width:auto，长标题会把整页撑出横向滚动 */
   min-width: 0;
   text-decoration: none !important;
-  transition: background 0.2s ease, padding-left 0.2s ease;
+  transition: background 0.24s ease, padding-left 0.24s ease;
 }
 
 .wl-recent__list a:hover {
-  background: var(--vp-c-bg-soft);
-  padding-left: 22px;
+  background: linear-gradient(90deg, rgba(107, 121, 245, 0.16), transparent 62%);
+  padding-left: 24px;
 }
 
 .wl-recent__icon {
@@ -493,68 +856,226 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
-   7. 导航栏 / 侧边栏
+   9. 首页：收藏陈列（ExhibitBand.vue）
    ------------------------------------------------------------------------ */
-.VPNav .VPNavBar {
-  backdrop-filter: saturate(180%) blur(14px);
-  background-color: color-mix(in srgb, var(--vp-c-bg) 78%, transparent);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.25s ease, background-color 0.25s ease;
+.wl-exhibit,
+.wl-wall {
+  max-width: 1104px;
+  margin: 0 auto;
 }
 
-.VPNav.has-scrolled .VPNavBar {
-  border-bottom-color: var(--vp-c-divider);
+.wl-exhibit {
+  margin-top: 88px;
 }
 
-.VPNavBarTitle .title {
-  font-weight: 700;
-  letter-spacing: -0.01em;
+.wl-wall {
+  margin-top: 76px;
 }
 
-/* 侧边栏分组标题 */
-.VPSidebarItem.level-0 > .item > .text {
-  font-weight: 700;
-  letter-spacing: 0.01em;
+.wl-exhibit__row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  /* 四张等宽并排；窄屏两列、再窄一列，不靠手工断点堆 */
+  grid-template-columns: repeat(auto-fit, minmax(min(188px, 100%), 1fr));
+  gap: 14px;
 }
 
-.VPSidebarItem.level-0 {
-  padding-bottom: 12px;
-}
-
-/* 选中项：左侧渐变竖条 */
-.VPSidebarItem.is-active > .item .link .text,
-.VPSidebarItem.is-active > .item .text {
-  color: var(--vp-c-brand-1) !important;
-  font-weight: 600;
-}
-
-.VPSidebarItem.level-1.is-active {
+.wl-exhibit__item {
   position: relative;
+  margin: 0;
+  border-radius: var(--wl-radius);
+  overflow: hidden;
+  /* 卡片本身不上背景色 —— 图自己就是画面，加底反而显得脏 */
+  box-shadow: var(--wl-shadow-1);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.42s ease, filter 0.42s ease;
 }
 
-.VPSidebarItem.level-1.is-active::before {
+.wl-exhibit__item img {
+  display: block;
+  width: 100%;
+  /* 4:5 竖构图，和加工时的裁剪比例一致，不额外变形 */
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 底部压一层渐变，给标题留出可读的底 */
+.wl-exhibit__item::after {
   content: '';
   position: absolute;
-  left: -2px;
-  top: 4px;
-  bottom: 4px;
-  width: 3px;
-  border-radius: 3px;
-  background: var(--wl-gradient);
+  inset: auto 0 0 0;
+  height: 46%;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(4, 7, 22, 0.86), rgba(4, 7, 22, 0.32) 42%, transparent);
 }
 
-/* 悬停时轻微右移，给出可点的反馈 */
-.VPSidebarItem.level-1 .link:hover .text {
-  color: var(--vp-c-brand-1);
-  transform: translateX(2px);
+.wl-exhibit__caption {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 12px;
+  z-index: 1;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #eef2ff;
+  text-shadow: 0 1px 6px rgba(2, 4, 14, 0.7);
 }
 
-.VPSidebarItem .text {
-  transition: color 0.2s ease, transform 0.2s ease;
+/* 聚光：悬停的那张上浮，同排其他三张退到后面 */
+.wl-exhibit__row:hover .wl-exhibit__item {
+  filter: saturate(0.82) brightness(0.88);
+}
+
+.wl-exhibit__row .wl-exhibit__item:hover {
+  filter: none;
+  transform: translateY(-8px);
+  box-shadow: var(--wl-shadow-2), 0 0 0 1px rgba(127, 216, 255, 0.32);
+  z-index: 1;
+}
+
+.wl-exhibit__item:hover img {
+  transform: scale(1.05);
 }
 
 /* ---------------------------------------------------------------------------
-   8. 正文排版
+   10. 首页：画墙 + 灯箱（GalleryWall.vue）
+   ------------------------------------------------------------------------ */
+.wl-wall__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(248px, 100%), 1fr));
+  gap: 12px;
+}
+
+.wl-wall__tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--wl-radius-sm);
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--vp-c-bg-soft);
+  box-shadow: var(--wl-shadow-1);
+  transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.36s ease;
+}
+
+.wl-wall__tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wl-wall__tile::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 52%;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(4, 7, 22, 0.82), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wl-wall__tile:hover,
+.wl-wall__tile:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--wl-shadow-2), 0 0 0 1px rgba(127, 216, 255, 0.3);
+}
+
+.wl-wall__tile:hover img {
+  transform: scale(1.06);
+}
+
+.wl-wall__tile:hover::after {
+  opacity: 1;
+}
+
+.wl-wall__caption {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  z-index: 1;
+  font-size: 0.78rem;
+  color: #eef2ff;
+  text-shadow: 0 1px 6px rgba(2, 4, 14, 0.72);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.wl-wall__tile:hover .wl-wall__caption,
+.wl-wall__tile:focus-visible .wl-wall__caption {
+  opacity: 1;
+  transform: none;
+}
+
+/* 灯箱：原生 dialog，自带 Esc 关闭与焦点陷阱 */
+.wl-lightbox {
+  padding: 0;
+  border: none;
+  border-radius: var(--wl-radius);
+  background: transparent;
+  overflow: visible;
+}
+
+.wl-lightbox::backdrop {
+  background: rgba(2, 4, 14, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.wl-lightbox img {
+  display: block;
+  /* 视口很窄时也不会溢出 */
+  max-width: min(92vw, 1100px);
+  max-height: 84vh;
+  width: auto;
+  height: auto;
+  border-radius: var(--wl-radius-sm);
+  box-shadow: var(--wl-shadow-2);
+}
+
+.wl-lightbox__caption {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 0.86rem;
+  color: #dfe6ff;
+}
+
+.wl-lightbox__close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(168, 186, 255, 0.28);
+  border-radius: 50%;
+  background: var(--wl-glass-strong);
+  color: var(--vp-c-text-1);
+  font-size: 0.9rem;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.wl-lightbox__close:hover {
+  transform: rotate(90deg) scale(1.06);
+  border-color: var(--wl-brand-2);
+}
+
+/* ---------------------------------------------------------------------------
+   11. 正文排版
    ------------------------------------------------------------------------ */
 .vp-doc h1 {
   letter-spacing: -0.02em;
@@ -580,6 +1101,17 @@ body {
   border-top: none;
 }
 
+/* 正文链接：候选式下划线，悬停时点亮 */
+.vp-doc a {
+  text-decoration-color: color-mix(in srgb, var(--vp-c-brand-1) 45%, transparent);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.vp-doc a:hover {
+  text-decoration-color: var(--vp-c-brand-2);
+}
+
 /* 行内代码 */
 .vp-doc :not(pre) > code {
   background: var(--vp-c-brand-soft);
@@ -587,22 +1119,37 @@ body {
   border-radius: 6px;
   padding: 2px 6px;
   font-size: 0.86em;
+  border: 1px solid color-mix(in srgb, var(--vp-c-brand-1) 18%, transparent);
 }
 
-.dark .vp-doc :not(pre) > code {
-  color: var(--vp-c-brand-3);
-}
-
-/* 代码块 */
+/* 代码块：顶部渐变光带 */
 .vp-doc div[class*='language-'] {
   border-radius: var(--wl-radius-sm);
   border: 1px solid var(--vp-c-divider);
   box-shadow: var(--wl-shadow-1);
   margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.vp-doc div[class*='language-']::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--wl-gradient);
+  opacity: 0.7;
 }
 
 .vp-doc div[class*='language-'] pre {
   padding-top: 20px;
+}
+
+.vp-doc div[class*='language-'] > span.lang {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
 }
 
 /* 代码块右上角的复制按钮 */
@@ -614,7 +1161,7 @@ body {
 .vp-doc blockquote {
   border-left: 3px solid transparent;
   border-image: var(--wl-gradient) 1;
-  background: var(--vp-c-bg-soft);
+  background: color-mix(in srgb, var(--vp-c-bg-soft) 70%, transparent);
   border-radius: 0 var(--wl-radius-sm) var(--wl-radius-sm) 0;
   padding: 2px 16px;
   color: var(--vp-c-text-2);
@@ -638,10 +1185,15 @@ body {
   font-weight: 650;
 }
 
-/* 图片：圆角 + 描边 */
+/* 图片：圆角 + 描边 + 悬停微放大 */
 .vp-doc img {
   border-radius: var(--wl-radius-sm);
   border: 1px solid var(--vp-c-divider);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vp-doc img:hover {
+  box-shadow: var(--wl-shadow-2);
 }
 
 /* Mermaid 图表容器 */
@@ -678,10 +1230,11 @@ body {
   font-size: 0.85rem;
 }
 
-/* 提示容器圆角化 */
+/* 提示容器圆角化 + 玻璃 */
 .vp-doc .custom-block {
   border-radius: var(--wl-radius-sm);
   border-width: 1px;
+  backdrop-filter: blur(8px);
 }
 
 /* 分割线更含蓄 */
@@ -689,15 +1242,21 @@ body {
   border-top: 1px solid var(--vp-c-divider);
 }
 
+/* 右侧目录：当前项高亮 */
+.VPDocAsideOutline .outline-link.active {
+  color: var(--vp-c-brand-2);
+  font-weight: 600;
+}
+
 /* ---------------------------------------------------------------------------
-   9. 阅读进度条 / 回到顶部 / 页脚
+   11. 阅读进度条（鲸鱼游动）
    ------------------------------------------------------------------------ */
 .wl-progress {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 3px;
   z-index: 100;
   pointer-events: none;
 }
@@ -708,15 +1267,61 @@ body {
   transform-origin: left center;
   transform: scaleX(0);
   background: var(--wl-gradient);
-  box-shadow: 0 0 10px rgba(47, 109, 246, 0.55);
+  box-shadow: 0 0 12px rgba(127, 216, 255, 0.65);
 }
 
+/* 游标小鲸鱼：跟着进度条走，带轻微摆尾 */
+.wl-progress__whale {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: -9px;
+  margin-left: -11px;
+  background: var(--wl-gradient);
+  -webkit-mask: url('/whale.svg') center / contain no-repeat;
+  mask: url('/whale.svg') center / contain no-repeat;
+  filter: drop-shadow(0 0 8px rgba(127, 216, 255, 0.85));
+  animation: wl-swim 2.6s ease-in-out infinite;
+  transition: left 0.1s linear;
+}
+
+/* ---------------------------------------------------------------------------
+   12. 页脚 / 回到顶部 / 搜索
+   ------------------------------------------------------------------------ */
 .VPBackToTop {
   border-radius: 999px;
 }
 
 .VPFooter {
+  position: relative;
   border-top: 1px solid var(--vp-c-divider) !important;
+}
+
+/* 页脚顶部的渐变细线 */
+.VPFooter::before {
+  content: '';
+  position: absolute;
+  inset: -1px 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--wl-brand-1), var(--wl-brand-2), transparent);
+  opacity: 0.6;
+}
+
+/* 页脚鲸鱼水印 */
+.VPFooter::after {
+  content: '';
+  position: absolute;
+  right: 6%;
+  bottom: 8px;
+  width: 120px;
+  height: 120px;
+  background: var(--wl-gradient);
+  opacity: 0.07;
+  -webkit-mask: url('/whale.svg') center / contain no-repeat;
+  mask: url('/whale.svg') center / contain no-repeat;
+  pointer-events: none;
 }
 
 .VPFooter .message,
@@ -725,13 +1330,222 @@ body {
   color: var(--vp-c-text-3);
 }
 
-/* 本地搜索弹窗圆角 */
+/* 本地搜索弹窗 */
 .VPLocalSearchBox .shell {
   border-radius: var(--wl-radius) !important;
-  border: 1px solid var(--vp-c-divider) !important;
+  border: 1px solid var(--vp-c-border) !important;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--wl-shadow-2) !important;
+}
+
+.VPLocalSearchBox .result {
+  border-radius: var(--wl-radius-sm) !important;
 }
 
 /* 首页底部留白更舒服 */
 .VPHome {
   margin-bottom: 120px;
+}
+
+/* ---------------------------------------------------------------------------
+   13. 文章级 AI 组件（ArticleActions.vue / RelatedArticles.vue）
+   ------------------------------------------------------------------------ */
+.wl-article-tools {
+  margin-top: 44px;
+  padding-top: 22px;
+  border-top: 1px dashed var(--vp-c-divider);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.wl-article-tools__label {
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+  margin-right: 2px;
+}
+
+.wl-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(var(--wl-glass), var(--wl-glass)) padding-box,
+    var(--wl-hairline) border-box;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wl-chip:hover {
+  transform: translateY(-2px);
+  color: var(--vp-c-brand-2);
+  box-shadow: 0 6px 18px rgba(3, 6, 20, 0.3), 0 0 0 1px rgba(127, 216, 255, 0.3);
+}
+
+.wl-chip.is-done {
+  color: var(--wl-brand-2);
+}
+
+.wl-related {
+  margin-top: 34px;
+}
+
+.wl-related__title {
+  font-size: 1rem;
+  font-weight: 650;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wl-related__title::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background: var(--wl-gradient);
+  -webkit-mask: url('/whale.svg') center / contain no-repeat;
+  mask: url('/whale.svg') center / contain no-repeat;
+}
+
+.wl-related__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.wl-related__list a {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: var(--wl-radius-sm);
+  border: 1px solid var(--vp-c-divider);
+  background: color-mix(in srgb, var(--vp-c-bg-soft) 55%, transparent);
+  text-decoration: none !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.wl-related__list a:hover {
+  transform: translateX(4px);
+  border-color: color-mix(in srgb, var(--wl-brand-2) 40%, transparent);
+  background: color-mix(in srgb, var(--vp-c-bg-soft) 85%, transparent);
+}
+
+.wl-related__score {
+  flex: none;
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 文章摘要（构建期由 LLM 或抽取式算法生成） */
+.wl-tldr {
+  margin: 18px 0 26px;
+  padding: 14px 18px;
+  border-radius: var(--wl-radius-sm);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--wl-glass), var(--wl-glass)) padding-box,
+    var(--wl-hairline) border-box;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--vp-c-text-2);
+}
+
+.wl-tldr__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--wl-brand-2);
+  margin-right: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+   14. 滚动进场（由 theme/effects.ts 添加 .is-in）
+   ------------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  /* 关键：初始隐藏态挂在 JS 加上的 .wl-reveal 上，而不是直接隐藏这些元素。
+     否则一旦观察器没扫描到某个元素（SSR 水合、异步组件挂载都会发生），
+     它就会永久停在 opacity:0 —— 内容凭空消失，比没有动画严重得多。 */
+  html.wl-fx .wl-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  html.wl-fx .wl-reveal.is-in {
+    animation: wl-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+/* 调试开关：在 URL 后面加 ?nofx=1 可以停掉入场动画，用来排查「内容被动画藏住」 */
+html.wl-nofx .wl-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .VPHome::before {
+    animation: none;
+  }
+  .VPHomeHero .name {
+    animation: none;
+  }
+  .wl-progress__whale {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   15. 移动端
+   ------------------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .wl-starfield {
+    height: 560px;
+  }
+
+  .VPHome::before {
+    height: 480px;
+  }
+
+  .wl-categories {
+    margin-top: 56px;
+  }
+
+  .wl-recent {
+    margin-top: 48px;
+  }
+
+  /* 手机上关掉玻璃模糊：低端机 backdrop-filter 很贵 */
+  .wl-card,
+  .wl-recent__list,
+  .VPFeature {
+    backdrop-filter: none;
+    background: var(--vp-c-bg-elv);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   ThemeImage 的 <picture> 只负责选源，不参与布局
+   —— 让各卡片原有的 `xxx img` 选择器继续命中，双主题接线不必重写定位规则
+   ------------------------------------------------------------------------ */
+.wl-picture {
+  display: contents;
 }

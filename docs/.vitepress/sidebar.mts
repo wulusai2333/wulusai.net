@@ -86,7 +86,15 @@ export function firstHeading(file: string): string | undefined {
 }
 
 function toLink(relPath: string): string {
-  return '/' + relPath.split(path.sep).join('/').replace(/\.md$/, '')
+  // index.md 指向目录本身，否则链接会变成 /AI/index 这种多余的形态
+  return (
+    '/' +
+    relPath
+      .split(path.sep)
+      .join('/')
+      .replace(/\.md$/, '')
+      .replace(/(^|\/)index$/, '$1')
+  )
 }
 
 function buildGroup(section: SectionConfig): SidebarGroup | undefined {
